@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +24,7 @@ public class Issue {
 
 	private String description;
 
-	@Column(name="issue_type")
+	@Column(name = "issue_type")
 	@Enumerated(EnumType.STRING)
 	private IssueType issueType;
 
@@ -33,14 +34,20 @@ public class Issue {
 	@Enumerated(EnumType.STRING)
 	private IssueStatus status;
 
-	@Column(name="story_points")
+	@Column(name = "story_points")
 	private int storyPoints;
 
-	@Column(name="created_date")
+	@Column(name = "created_date")
 	private Date createdDate;
-	
-	@Column(name="modified_date")
+
+	@Column(name = "modified_date")
 	private Date modifiedDate;
+
+	@ManyToOne
+	private Project project;
+
+	@ManyToOne
+	private User user;
 
 	public Issue() {
 
