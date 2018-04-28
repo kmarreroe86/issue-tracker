@@ -1,33 +1,49 @@
 package com.example.issuetracker.issuetracker.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "issues")
 public class Issue {
-	
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
+	@Column(name="issue_type")
 	@Enumerated(EnumType.STRING)
-	private IssueType type;
-	
+	private IssueType issueType;
+
 	@Enumerated(EnumType.STRING)
 	private IssuePriority priority;
-	
+
 	@Enumerated(EnumType.STRING)
 	private IssueStatus status;
+
+	@Column(name="story_points")
+	private int storyPoints;
+
+	@Column(name="created_date")
+	private Date createdDate;
 	
-	public Issue(){
-		
+	@Column(name="modified_date")
+	private Date modifiedDate;
+
+	public Issue() {
+
 	}
 
 	public String getTitle() {
@@ -47,11 +63,11 @@ public class Issue {
 	}
 
 	public IssueType getType() {
-		return type;
+		return issueType;
 	}
 
 	public void setType(IssueType type) {
-		this.type = type;
+		this.issueType = type;
 	}
 
 	public IssuePriority getPriority() {
@@ -74,7 +90,28 @@ public class Issue {
 		return id;
 	}
 
-	
-	
+	public int getStoryPoints() {
+		return storyPoints;
+	}
+
+	public void setStoryPoints(int storyPoints) {
+		this.storyPoints = storyPoints;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
 
 }
