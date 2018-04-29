@@ -31,7 +31,8 @@ public class IssueController {
 			issues = issueService.findAll();
 			if(issues == null) issues = new ArrayList<>();
 		} catch (Exception e) {
-			logger.error("An error ocurred");
+			logger.error("An error ocurred\n");
+			logger.error(e.getMessage());
 			return new ResponseEntity<List<Issue>>(issues, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<List<Issue>>(issues, HttpStatus.OK);
