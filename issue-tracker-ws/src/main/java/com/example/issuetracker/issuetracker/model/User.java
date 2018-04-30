@@ -3,9 +3,11 @@ package com.example.issuetracker.issuetracker.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,9 +30,14 @@ public class User {
 	private UserRol rol;
 
 	@OneToMany(mappedBy = "user")
-	private Set<Issue> userList = new HashSet<>();
-	
-	@ManyToMany(mappedBy = "projects")	// -> mappedBy takes value of the list in the owner side. 
+	private Set<Issue> issueList = new HashSet<>();
+
+	@ManyToMany(mappedBy = "users", // -> mappedBy takes value of the list in the owner side.
+			fetch = FetchType.LAZY,
+			cascade = {
+	                CascadeType.PERSIST,
+	                CascadeType.MERGE
+	            })
 	private Set<Project>projects = new HashSet<>();
 
 	public User() {
@@ -55,6 +62,14 @@ public class User {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
 	}
 
 }

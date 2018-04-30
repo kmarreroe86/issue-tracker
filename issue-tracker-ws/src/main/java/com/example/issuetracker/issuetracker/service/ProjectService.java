@@ -3,6 +3,7 @@ package com.example.issuetracker.issuetracker.service;
 import java.util.List;
 
 import com.example.issuetracker.issuetracker.model.Project;
+import com.example.issuetracker.issuetracker.model.User;
 
 public interface ProjectService {
 
@@ -15,5 +16,7 @@ public interface ProjectService {
 	List<Project> findAll();
 
 	void deleteById(Long id);
+	
+	void addUsersToProject(Long projectID, List<User> userList);
 
 }

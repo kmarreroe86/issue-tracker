@@ -30,11 +30,11 @@ public class Project {
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private Set<Issue> project_issues = new HashSet<>();
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "project_user", 
 		joinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") })
-	private Set<User> projects = new HashSet<>();
+	private Set<User> users = new HashSet<>();
 
 	public Project() {
 	}
@@ -49,6 +49,14 @@ public class Project {
 
 	public Long getId() {
 		return id;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

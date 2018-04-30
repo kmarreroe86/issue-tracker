@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.issuetracker.issuetracker.model.Project;
+import com.example.issuetracker.issuetracker.model.User;
 import com.example.issuetracker.issuetracker.repository.ProjectRepository;
 
 @Service
@@ -38,6 +39,16 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public void deleteById(Long id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public void addUsersToProject(Long projectID, List<User> userList) {
+		Project currentProject = repository.getOne(projectID);
+		
+		if(currentProject == null) return;
+		
+		currentProject.getUsers().addAll(userList);
+		repository.save(currentProject);
 	}
 
 }
