@@ -23,7 +23,7 @@ public class IssueController {
 	@Autowired
 	private IssueService issueService;
 	
-	@GetMapping("/issues")
+	@GetMapping("/issues/")
 	public ResponseEntity<List<Issue>> getAllIssues() {
 		List<Issue> issues = null;
 		

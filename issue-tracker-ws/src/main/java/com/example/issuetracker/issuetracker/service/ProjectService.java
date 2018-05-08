@@ -14,6 +14,8 @@ public interface ProjectService {
 	Project save(Project newProject);
 
 	List<Project> findAll();
+	
+	List<Project> findProjectsByUserId(Long userId);
 
 	void deleteById(Long id);
 	

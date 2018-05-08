@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "projects")
 public class Project {
@@ -34,6 +36,7 @@ public class Project {
 	@JoinTable(name = "project_user", 
 		joinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") })
+	@JsonIgnore
 	private Set<User> users = new HashSet<>();
 
 	public Project() {

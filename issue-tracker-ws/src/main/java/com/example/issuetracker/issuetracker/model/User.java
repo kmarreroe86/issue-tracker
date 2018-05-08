@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -38,6 +40,7 @@ public class User {
 	                CascadeType.PERSIST,
 	                CascadeType.MERGE
 	            })
+//	@JsonIgnore
 	private Set<Project>projects = new HashSet<>();
 
 	public User() {

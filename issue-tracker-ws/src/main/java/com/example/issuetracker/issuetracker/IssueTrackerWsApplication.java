@@ -11,18 +11,18 @@ import com.example.issuetracker.issuetracker.model.UserRol;
 import com.example.issuetracker.issuetracker.repository.ProjectRepository;
 
 @SpringBootApplication
-public class IssueTrackerWsApplication implements CommandLineRunner {
+public class IssueTrackerWsApplication /*implements CommandLineRunner*/ {
 	
-	@Autowired
-	private ProjectRepository repo;
+	/*@Autowired
+	private ProjectRepository repo;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(IssueTrackerWsApplication.class, args);
 	}
 	
 
-	@Override
-	public void run(String... args) throws Exception {
+//	@Override
+//	public void run(String... args) throws Exception {
 		/*Project testProject = new Project();		
 		testProject.setProjectName("TestProjectManyToMany1");
 		Project testProject2 = new Project();
@@ -49,5 +49,5 @@ public class IssueTrackerWsApplication implements CommandLineRunner {
 		repo.save(testProject);
 		repo.save(testProject2);*/
 		
-	}
+//	}
 }

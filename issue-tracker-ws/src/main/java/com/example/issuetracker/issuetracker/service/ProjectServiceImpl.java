@@ -50,5 +50,9 @@ public class ProjectServiceImpl implements ProjectService {
 		currentProject.getUsers().addAll(userList);
 		repository.save(currentProject);
 	}
+	
+	public List<Project> findProjectsByUserId(Long userId) {
+		return repository.findByUsers_Id(userId);
+	}
 
 }

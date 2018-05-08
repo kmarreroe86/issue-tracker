@@ -1,4 +1,4 @@
-package com.example.issuetracker.issuetracker.controllers;
+package com.example.issuetracker.issuetracker.web.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

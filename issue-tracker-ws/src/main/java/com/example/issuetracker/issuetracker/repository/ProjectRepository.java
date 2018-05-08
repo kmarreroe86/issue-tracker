@@ -1,5 +1,7 @@
 package com.example.issuetracker.issuetracker.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,8 @@ import com.example.issuetracker.issuetracker.model.Project;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 	
 	Project findByProjectName(String projectName);
+	
+	List<Project> findByUsers_Id(Long id);
 	
 
 }
