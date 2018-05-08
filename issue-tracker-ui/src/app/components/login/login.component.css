@@ -1,0 +1,75 @@
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    background: #205081;
+    color: #fff;
+    min-height: 100vh;    
+}
+.wrapper {
+    padding: 15px;
+    width: 90%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    color: #000;
+}
+.form-group > div {
+    position: relative;
+}
+.form-group > div:before {
+    font-family: FontAwesome;
+    content: "\f007";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-left: 6px;
+    height: 25px;
+}
+.form-group.pass > div a {
+    content: '\f06e';
+    font-family: FontAwesome;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 25px; 
+    margin-right: 6px;
+    padding: 4.5px 0;
+}
+.form-group.pass > div a i {
+    cursor: pointer;
+}
+.form-group.pass > div:before {
+    content: '\f084';
+}
+label {
+    display: none;
+}
+input {
+    display: block;
+    padding: 0.6em;
+    width: 100%;
+    padding-left: 25px;
+}
+form .remember-me {
+    display: none;
+}
+form button {
+    padding: 0.6em;
+    background: #205081;
+    color: #fff;
+    border: none;
+}
+form button:hover,
+form button:focus {
+    outline: 0;
+}
+#password {
+    padding-right: 24px;
+}
