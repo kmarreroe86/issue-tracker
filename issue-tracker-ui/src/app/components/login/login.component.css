@@ -9,12 +9,26 @@
     padding: 15px;
     width: 90%;
     margin: 0 auto;
+    /* background: #fff; */
     background: #fff;
     border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+}
+.login-container {
+    background: #fff;
+
+    /* display: grid;
+    grid-template-columns: 1fr; 
+    grid-gap: 20px; */
+}
+.login-header {
+    display: none;
 }
 form {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
     grid-gap: 20px;
     color: #000;
 }
@@ -60,6 +74,9 @@ input {
 form .remember-me {
     display: none;
 }
+form .sign-up {
+    display: none;
+}
 form button {
     padding: 0.6em;
     background: #205081;
@@ -72,4 +89,140 @@ form button:focus {
 }
 #password {
     padding-right: 24px;
+}
+
+
+@media screen and (min-width: 992px) {
+    #login {
+        max-height: 500px;
+    }
+    .container {
+        max-width: 100%;
+        background: #F5F5F5;
+        padding: 1em;
+        min-height: calc(100vh - 100px);
+    }
+    .wrapper {
+        background: transparent;
+        grid-template-columns: 15% 70% 15%;
+        grid-gap: 2em;
+    }
+    .login-container {
+        grid-column-start: 2;
+        grid-column-end: 2;        
+        grid-row-end: 3;
+        padding: 20px;
+        box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+    }
+    .login-header {
+        display: block;
+        font-weight: 400;
+    }
+    .login-header span {
+        text-transform: uppercase;
+    }
+    #password {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    form {
+        display: block;
+        width: 60%;
+        margin: 10px auto;
+    }
+    form label {
+        display: inline;
+    }
+    form input {
+        display: inline-block;
+        width: 40%;
+        border-radius: 3px;
+        padding-left: 0;
+    }
+    form input[type="checkbox"] {
+        visibility: hidden;
+    }
+    form .user-login-icons {
+        display: none;
+    }
+    form .remember-me {
+        display: block;
+    }
+
+    /* Checkbox begin */
+    .form-group.remember-me {
+        margin-left: 78px;
+        margin-bottom: 15px;;
+    }
+    .form-group.remember-me .checkbox {        
+        width: 20px;
+        height: 20px;
+        background-color: #ddd;
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        position: relative;
+    }
+    .form-group.remember-me .checkbox label {
+        position: absolute;
+            width: 18px;
+            height: 18px;
+            top: 1px;
+            left: 1px;
+            background-color: #fff;
+            cursor: pointer;
+    }
+    .form-group.remember-me .checkbox label:before {
+        content: '';
+        width: 9px;
+        height: 5px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border: 2px solid #fff;
+        border-top: none;
+        border-right: none;
+        transform: rotate(-45deg);
+        opacity: 0;
+    }
+    .form-group.remember-me .checkbox input[type="checkbox"]:checked + label {
+        background-color: #205081;
+    }
+    .form-group.remember-me .checkbox input[type="checkbox"]:checked + label:before {
+        opacity: 1;
+    }
+    .form-group.remember-me .checkbox + p {
+        line-height: 20px;
+    }
+    /* Checkbox end */
+
+    form .form-group > div {
+        margin-bottom: 15px;
+    }
+    form .form-group > div:before,
+    form .form-group.pass > div:before {
+        content: '';
+    }
+    form .form-group.pass label {
+        margin-right: 3px;
+    }
+    form .form-group.pass > div a {
+        display: none;
+    }    
+    form .sign-up {
+        display: block;
+        margin-left: 77px;
+    }
+    form button {        
+        background: #f4f4f4;
+        border-radius: .25rem;        
+        color: #000;
+        padding: .375rem .75rem;
+        cursor: pointer;        
+        border:1px solid #333;
+        display:inline-block;
+        cursor:pointer;
+        margin-left: 77px;
+        margin-top: 20px;
+    }
 }

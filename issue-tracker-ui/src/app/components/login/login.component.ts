@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Project } from '../../models/project'; // Remove this only for connectivity test
@@ -7,7 +7,8 @@ import { ProjectService } from '../../services/projects.service'; // Remove this
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None // Remove angular boilerplate html code.
 })
 export class LoginComponent implements OnInit {
   projects: Project[];

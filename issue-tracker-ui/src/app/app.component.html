@@ -3,7 +3,11 @@
         <h2><span>Jira</span> Mobile</h2>
     </div>
     <div id="header-desktop">
-        
+        <div class="branding">
+            <img src="../assets/jira-logo.png" alt="Jira Logo">
+            <p-dropdown [style]="{'width':'120px', 'height':'28px'}" [options]="boards" [(ngModel)]="selectedBoard" placeholder="Dashboards" optionLabel="name"></p-dropdown>
+        </div>
+        <div class="links"></div>
     </div>
 </header>
 

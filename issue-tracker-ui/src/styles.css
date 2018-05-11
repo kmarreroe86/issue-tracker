@@ -23,3 +23,9 @@ header {
     background: #205081;
     color: #fff;
 }
+
+@media screen and (min-width: 992px) {
+    body {
+        padding: 0;
+    }
+}
