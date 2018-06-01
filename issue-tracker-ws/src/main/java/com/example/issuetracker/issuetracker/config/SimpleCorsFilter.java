@@ -1,4 +1,4 @@
-package com.example.issuetracker.issuetracker.web.filter;
+package com.example.issuetracker.issuetracker.config;
 
 import java.io.IOException;
 
@@ -13,31 +13,33 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SimpleCorsFilter implements Filter{
+public class SimpleCorsFilter implements Filter {
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
 			throws IOException, ServletException {
-		
+
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, PUT");
 		response.setHeader("Access-Control-Allow-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, content-type");
-		
-		arg2.doFilter(arg0, arg1);		
+		response.setHeader("Access-Control-Allow-Credentials", "true");
+		response.setHeader("Access-Control-Allow-Headers",
+				"X-Requested-With, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+		arg2.doFilter(arg0, arg1);
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

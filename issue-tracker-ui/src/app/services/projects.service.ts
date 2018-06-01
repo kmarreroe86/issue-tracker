@@ -13,4 +13,8 @@ export class ProjectService {
     getProjects(): Observable<Project[]> {
         return this.http.get<Project[]>('http://localhost:8080/projects/');
     }
+
+    getUserProjects(userId: number): Observable<Project[]> {
+        return this.http.get<Project[]>('http://localhost:8080/projects/' + userId);
+    }
 }

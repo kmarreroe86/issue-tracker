@@ -13,13 +13,13 @@
           <div class="form-group">
             <div>
               <label for="username" class="label-group">Username</label>
-              <input type="text" name="username" id="username" #usernameInput>
+              <input type="text" name="username" id="username" #usernameInput [(ngModel)]="loginUser.username">
             </div>
           </div>
           <div class="form-group pass">
             <div>
               <label for="password" class="label-group">Password</label>
-              <input type="password" name="password" id="password" #passwordInput password-input>
+              <input type="password" name="password" id="password" #passwordInput password-input [(ngModel)]="loginUser.password">              
               <a (mousedown)="showPassword()" (mouseup)="hidePassword()" (touchstart)="showPassword()" (touchend)="hidePassword()">
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </a>

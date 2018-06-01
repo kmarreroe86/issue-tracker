@@ -1,14 +1,7 @@
 package com.example.issuetracker.issuetracker;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.example.issuetracker.issuetracker.model.Project;
-import com.example.issuetracker.issuetracker.model.User;
-import com.example.issuetracker.issuetracker.model.UserRol;
-import com.example.issuetracker.issuetracker.repository.ProjectRepository;
 
 @SpringBootApplication
 public class IssueTrackerWsApplication /*implements CommandLineRunner*/ {

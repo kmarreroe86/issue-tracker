@@ -2,44 +2,60 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './app.interceptor';
 
 // Third Party
 import { DropdownModule } from 'primeng/dropdown';
-// import { SelectItem } from 'primeng/api';
 
 // Components
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectsDashboardComponent } from './components/projects-dashboard/projects-dashboard.component';
 
 
 // Services
+import { UrlPermission } from './services/url.permission';
+import { routing } from './app.routing';
+import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/projects.service';
 import { UserService } from './services/user.service';
-
-const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'projects/user/:userId', component: ProjectsDashboardComponent }
-];
-
+import { AppService } from './services/app.service';
+import { TokenStorage } from './token.storage';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProjectsDashboardComponent
+    ProjectsDashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    HttpModule,
+    routing, // RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     DropdownModule
+    // OAuthModule.forRoot()
   ],
-  providers: [ProjectService, UserService],
+  providers: [
+    UrlPermission,
+    AuthService,
+    ProjectService,
+    UserService,
+    AppService,
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

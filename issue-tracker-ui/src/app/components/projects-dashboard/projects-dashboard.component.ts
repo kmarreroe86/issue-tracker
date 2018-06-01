@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
 import { Project } from '../../models/project';
+import { ProjectService } from '../../services/projects.service';
 
 
 @Component({
@@ -15,12 +16,12 @@ export class ProjectsDashboardComponent implements OnInit {
   private _userId: number;
   userProjects: Project[];
 
-  constructor(private _userService: UserService, private _activateRoute: ActivatedRoute) { }
+  constructor(/* private _userService: UserService */ private _projectService: ProjectService, private _activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this._activateRoute.paramMap.subscribe(param => {
       this._userId = parseInt(param.get('userId'), 10);
-      this._userService.getUserProjects(this._userId).subscribe((projects) => {
+      this._projectService.getUserProjects(this._userId).subscribe((projects) => {
         this.userProjects = projects;
       });
     });
