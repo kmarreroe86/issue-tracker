@@ -21,6 +21,9 @@ export class ProjectsDashboardComponent implements OnInit {
   ngOnInit() {
     this._activateRoute.paramMap.subscribe(param => {
       this._userId = parseInt(param.get('userId'), 10);
+      /* this._projectService.getProjects().subscribe((proj) => {
+        this.userProjects = proj;
+      }); */
       this._projectService.getUserProjects(this._userId).subscribe((projects) => {
         this.userProjects = projects;
       });

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
     HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent,
-    HttpResponse, HttpUserEvent, HttpErrorResponse
+    HttpResponse, HttpUserEvent, HttpErrorResponse, HttpEvent
 } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
@@ -22,12 +22,15 @@ export class Interceptor implements HttpInterceptor {
             authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken()) });
         }
         return next.handle(authReq).do(
+            (event: HttpEvent<any>) => {
+                console.log('Interceptor do. Response Ok');
+            },
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
-                    console.log(err);
+                    console.log('Interceptor error: ', err);
                     console.log('req url :: ' + req.url);
                     if (err.status === 401) {
-                        this.router.navigate(['/']);
+                        this.router.navigate(['/login']);
                     }
                 }
             });

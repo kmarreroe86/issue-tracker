@@ -53,14 +53,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);			
 
-			if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+			/*if (jwtTokenUtil.validateToken(authToken, userDetails)) {
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-						userDetails, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+						userDetails, null, Arrays.asList(
+								new SimpleGrantedAuthority[]{
+										new SimpleGrantedAuthority("ROLE_DEVELOPER"),
+										new SimpleGrantedAuthority("ROLE_PO"),
+										new SimpleGrantedAuthority("ROLE_QA"),
+										new SimpleGrantedAuthority("ROLE_DESIGNER")}));
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
 				logger.info("authenticated user " + username + ", setting security context");
-				SecurityContextHolder.getContext().setAuthentication(authentication);
+				SecurityContextHolder.getContext().setAuthentication(authentication);*/
+			
+			if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                UsernamePasswordAuthenticationToken authentication = jwtTokenUtil.getAuthentication(authToken, SecurityContextHolder.getContext().getAuthentication(), userDetails);
+                //UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+                logger.info("authenticated user " + username + ", setting security context");
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            
 			}
 		}
 

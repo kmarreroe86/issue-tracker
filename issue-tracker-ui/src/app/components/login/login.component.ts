@@ -51,9 +51,14 @@ export class LoginComponent implements OnInit {
       data => {
         /* const expireDate = new Date().getTime() + (1000 * token.expires_in);
         Cookie.set('access_token', token.access_token, expireDate); */
+        console.log('login token:', data.token);
         this.token.saveToken(data.token);
-        this._router.navigate(['']);
-      }
+        // this._router.navigate(['/home']);
+        this._router.navigate(['projects/user/', 1]);
+        // this._router.navigate(['/projects/']);
+      }, error => {
+        console.log('onSubscribe error: ', error);
+      },
     );
 
   }

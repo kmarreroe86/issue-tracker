@@ -22,18 +22,28 @@ public class SimpleCorsFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 
-		HttpServletResponse response = (HttpServletResponse) arg1;
+		/*HttpServletResponse response = (HttpServletResponse) arg1;
 		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "DELETE, GET, OPTIONS, PATCH, PUT");
+		response.setHeader("Access-Control-Allow-Methods", "POST, DELETE, GET, OPTIONS, PATCH, PUT");
 		response.setHeader("Access-Control-Allow-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Headers",
 				"X-Requested-With, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-		arg2.doFilter(arg0, arg1);
+		arg2.doFilter(arg0, arg1);*/
+		
+		System.out.println("Filtering on...........................................................");
+		HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+		response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+		chain.doFilter(req, res);
 	}
 
 	@Override

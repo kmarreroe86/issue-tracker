@@ -7,8 +7,9 @@ import { ProjectsDashboardComponent } from './components/projects-dashboard/proj
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
-    {path: '', component: HomeComponent, canActivate: [UrlPermission]},
-    { path: 'projects/user/:userId', component: ProjectsDashboardComponent, canActivate: [UrlPermission] },
+    {path: 'home', component: HomeComponent, canActivate: [UrlPermission]},
+    // { path: 'projects/user/:userId', component: ProjectsDashboardComponent, canActivate: [UrlPermission] },
+    { path: 'projects/user/:userId', component: ProjectsDashboardComponent },
     {path: '**', redirectTo: 'login'}    
 ];
 

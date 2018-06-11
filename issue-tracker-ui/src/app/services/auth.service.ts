@@ -7,17 +7,20 @@ import { User } from '../models/user';
 import { AppComponent } from '../app.component';
 import { LoginUser } from '../models/loginUser';
 
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class AuthService {
     private saltRounds = 10;
+    private salt = '$2a$10$VahSNsWalmFKtfHBgN8odu';
     constructor(private _http: HttpClient) { }
 
     attemptAuth(ussername: string, password: string): Observable<any> {
+        // const passwordHashed = this.hashUserPassword(password);
+        const hardcodepassword = '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm';
         const credentials = { username: ussername, password: password };
         console.log('attempAuth ::');
-        return this._http.post('http://localhost:8080/token/generate-token', credentials);
+        return this._http.post<any>('http://localhost:8080/token/generate-token', credentials);
     }
 
     /* public logIn(user: LoginUser) {
@@ -44,10 +47,10 @@ export class AuthService {
             });
     } */
 
-    private hashUserPassword(user): string {
-        const salt = bcrypt.genSaltSync(this.saltRounds);
-        const hash = bcrypt.hashSync(user.password, salt);
-        return hash;
-    }
+    // private hashUserPassword(password): string {
+    //     const hash = bcrypt.hashSync(password, this.salt);
+    //     console.log('password: hashed', hash);
+    //     return hash;
+    // }
 
 }
