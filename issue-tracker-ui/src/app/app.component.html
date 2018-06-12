@@ -7,7 +7,10 @@
             <img src="../assets/jira-logo.png" alt="Jira Logo">
             <p-dropdown [style]="{'width':'120px', 'height':'28px'}" [options]="boards" [(ngModel)]="selectedBoard" placeholder="Dashboards" optionLabel="name"></p-dropdown>
         </div>
-        <div class="links"></div>
+        <div class="links" *ngIf="_authService.getLoggedUser()">
+            <a href="#">{{_authService.getLoggedUser()}}</a> |
+            <a href="#" (click)="logOut()">Log Out</a>
+        </div>
     </div>
 </header>
 
@@ -15,4 +18,4 @@
     <router-outlet></router-outlet>
 </div>
 
-<footer>Bug tracking and project trackin for software development powered by Ksoft (v1.0)</footer>
+<footer>Bug and project tracking for software development powered by Ksoft (v1.0)</footer>

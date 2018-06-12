@@ -1,3 +1,6 @@
+.container {
+    color: #000;
+}
 #header-desktop {
     display: none;
 }
@@ -67,6 +70,11 @@
     float: right;
 }
 
+.links a {
+    color: #fff;
+    text-decoration: none;
+}
+
 footer {
     font-size: 0.7em;
     text-align: center;
@@ -74,6 +82,9 @@ footer {
 }
 
 @media screen and (min-width: 992px) {
+    .container {
+        height: calc(100vh - 107px);
+    }
     header {
         background: #2A4160;
         padding-left: 20px;
@@ -82,7 +93,7 @@ footer {
     #header-desktop {
         display: block;
         min-height: 70px;
-        padding: 12.5px 0;
+        padding: 12.5px 30px 12.5px 0;
     }
     #header-mobile {
         display: none;

@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
  import { AppService } from '../../services/app.service';
 import { User } from '../../models/user';
 import { LoginUser } from '../../models/loginUser';
-import { TokenStorage } from '../../token.storage';
+import { SessionStorage } from '../../core/session.storage';
 
 @Component({
   selector: 'app-login',
@@ -26,14 +26,12 @@ export class LoginComponent implements OnInit {
     private _authService: AuthService,
     private _appService: AppService,
     private _projectService: ProjectService,
-    private token: TokenStorage,
+    private _ssessionStorage: SessionStorage,
     private _router: Router) {
       console.log('LoginComponent constructor');
   }
 
-  ngOnInit() {
-    // this.loginUser = new LoginUser();
-    // this.loginUser =  {username: '', password: ''};
+  ngOnInit() {    
     console.log('LoginComponent ngOnInit');
   }
 
@@ -48,12 +46,11 @@ export class LoginComponent implements OnInit {
     // this._appService.obtainAccessToken(this.loginUser);
 
     this._authService.attemptAuth(this.loginUser.username, this.loginUser.password).subscribe(
-      data => {
-        /* const expireDate = new Date().getTime() + (1000 * token.expires_in);
-        Cookie.set('access_token', token.access_token, expireDate); */
+      data => {        
         console.log('login token:', data.token);
-        this.token.saveToken(data.token);
-        // this._router.navigate(['/home']);
+        this._ssessionStorage.saveToken(data.token);
+        this._ssessionStorage.saveCurrentUser(this.loginUser.username);
+        
         this._router.navigate(['projects/user/', 1]);
         // this._router.navigate(['/projects/']);
       }, error => {

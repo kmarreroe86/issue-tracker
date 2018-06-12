@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SelectItem } from 'primeng/api';
+import { AuthService } from './services/auth.service';
 // import { bcrypt } from '../../../issue-tracker-ui/node_modules/bcrypt';
 // tslint:disable-next-line:prefer-const
 // let bcrypt = require('bcryptjs');
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
   boards: Board[];
   selectedBoard: Board;
 
-  constructor() {
+  constructor(public _authService: AuthService) {
 
     this.boards = [
       { name: 'Board1', code: 'b1' },
@@ -33,15 +34,14 @@ export class AppComponent implements OnInit {
       { name: 'Board3', code: 'b3' },
       { name: 'Board4', code: 'b4' }
     ];
-
-    // const salt = 10; // increase this if you want more iterations
-    // const userPassword = 'password';
-    // bcrypt.hash(userPassword, salt, function(err, hash) {
-    //   console.log(hash);
-    // });
+    
     console.log('AppComponent ngOnInit');
   }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this._authService.logOut();
   }
 }

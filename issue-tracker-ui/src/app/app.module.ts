@@ -4,9 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Interceptor } from './app.interceptor';
+import { Interceptor } from './core/app.interceptor';
 
 // Third Party
 import { DropdownModule } from 'primeng/dropdown';
@@ -20,12 +19,12 @@ import { ProjectsDashboardComponent } from './components/projects-dashboard/proj
 
 // Services
 import { UrlPermission } from './services/url.permission';
-import { routing } from './app.routing';
+import { routing } from './core/app.routing';
 import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/projects.service';
 import { UserService } from './services/user.service';
 import { AppService } from './services/app.service';
-import { TokenStorage } from './token.storage';
+import { SessionStorage } from './core/session.storage';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { TokenStorage } from './token.storage';
     HttpModule,
     routing, // RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    DropdownModule
-    // OAuthModule.forRoot()
+    DropdownModule    
   ],
   providers: [
     UrlPermission,
@@ -50,7 +48,7 @@ import { TokenStorage } from './token.storage';
     ProjectService,
     UserService,
     AppService,
-    TokenStorage,
+    SessionStorage,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

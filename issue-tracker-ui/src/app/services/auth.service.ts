@@ -6,51 +6,26 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../models/user';
 import { AppComponent } from '../app.component';
 import { LoginUser } from '../models/loginUser';
-
-// const bcrypt = require('bcryptjs');
+import { SessionStorage } from '../core/session.storage';
 
 @Injectable()
 export class AuthService {
     private saltRounds = 10;
     private salt = '$2a$10$VahSNsWalmFKtfHBgN8odu';
-    constructor(private _http: HttpClient) { }
+    constructor(private _http: HttpClient, private _tokenStorage: SessionStorage) { }
 
     attemptAuth(ussername: string, password: string): Observable<any> {
-        // const passwordHashed = this.hashUserPassword(password);
         const hardcodepassword = '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm';
         const credentials = { username: ussername, password: password };
         console.log('attempAuth ::');
         return this._http.post<any>('http://localhost:8080/token/generate-token', credentials);
     }
 
-    /* public logIn(user: LoginUser) {
-        const headers = new HttpHeaders();
-        headers.append('Accept', 'application/json');
-        user.password = this.hashUserPassword(user);
+    getLoggedUser(): string {
+        return this._tokenStorage.getLoggedUser();
+    }
 
-        const base64Credential = btoa(user.username + ':' + user.password);
-        headers.append('Authorization', 'Basic ' + base64Credential);
-
-        return this._http.get(AppComponent.API_URL + '/account/login', { headers: headers })
-            .map((response: Response) => {                
-                const loggedUser = response.json().principal;
-                if (loggedUser) {                    
-                    localStorage.setItem('currentUser', JSON.stringify(loggedUser));
-                }
-            });
-    } */
-
-    /* logOut() {        
-        return this._http.post(AppComponent.API_URL + '/logout', {})
-            .map((response: Response) => {
-                localStorage.removeItem('currentUser');
-            });
-    } */
-
-    // private hashUserPassword(password): string {
-    //     const hash = bcrypt.hashSync(password, this.salt);
-    //     console.log('password: hashed', hash);
-    //     return hash;
-    // }
-
+    logOut() {
+        this._tokenStorage.signOut();
+    }
 }

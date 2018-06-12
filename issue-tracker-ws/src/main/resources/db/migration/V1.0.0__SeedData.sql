@@ -26,23 +26,23 @@ insert into projects(id, project_name) values
 (7, 'Spring-LDAP'),
 (8, 'Spring-KAFKA');
 
-insert into users(id, username, rol) values
-(1, 'karel', 'DEVELOPER'),
-(2, 'lerak', 'DEVELOPER'),
-(3, 'Yalexis', 'PO'),
-(4, 'Yeny', 'PO'),
-(5,'Jade', 'DESIGNER'),
-(6, 'Annieris', 'QA'),
-(7, 'Leandro', 'DEVELOPER'),
-(8, 'Rafael', 'DEVELOPER'),
-(9, 'JohnD', 'QA'),
-(10, 'JohnT', 'QA'),
-(11, 'Luis', 'DEVELOPER'),
-(12, 'Liam', 'PO'),
-(13, 'William', 'QA'),
-(14, 'Michael', 'QA'),
-(15, 'Noah', 'DESIGNER'),
-(16, 'James', 'DEVELOPER');
+insert into users(id, username, rol, email, password) values
+(1, 'karel', 'DEVELOPER', 'karel@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(2, 'lerak', 'DEVELOPER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(3, 'Yalexis', 'PO', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(4, 'Yeny', 'PO', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(5,'Jade', 'DESIGNER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(6, 'Annieris', 'QA', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(7, 'Leandro', 'DEVELOPER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(8, 'Rafael', 'DEVELOPER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(9, 'JohnD', 'QA', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(10, 'JohnT', 'QA', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(11, 'Luis', 'DEVELOPER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(12, 'Liam', 'PO', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(13, 'William', 'QA', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(14, 'Michael', 'QA', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(15, 'Noah', 'DESIGNER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),
+(16, 'James', 'DEVELOPER', 'test@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm');
 
 insert into issues(id, title, description, issue_type, priority, status, story_points, created_date, modified_date, project_id, user_id) values
 (1, 'Issue1', 'description1', 'ENHANCEMENT', 'LOW', 'OPEN', 	  1, '2018-03-27 10:30:00', '2018-04-27 10:30:00', 1, 1),
