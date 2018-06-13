@@ -1,0 +1,18 @@
+<h1>All Projects</h1>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Key</th>
+    <th>Project Lead</th>
+    <th>Url</th>
+  </tr>
+  <tr *ngFor="let p of projects">
+    <td>{{p.projectName}}</td>
+    <td>{{p.projectKey}}</td>
+    <td>
+      <a href="#">{{p.projectLead.username}}</a>
+    </td>
+    <td>https://acme.jira.com</td>
+  </tr>
+</table>

@@ -1,5 +1,59 @@
-<ul>
-  <li *ngFor="let p of userProjects">
-    {{p.projectName}}
-  </li>
-</ul>
+<!-- https://stackoverflow.com/questions/4131490/any-way-to-limit-border-length -->
+
+<div class="dashboard-title">
+  <h1>Browse Projects</h1>
+</div>
+
+<div class="dashboard-container">
+  <div class="dashboard-left-section">
+    <ul>
+      <li [ngClass]="{'active': selectedCategory == 'recent_projects'}" class="active">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('recent_projects')">Recent Projects</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'atlassain_products'}">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('atlassain_products')">Atlassian Products</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'common_modules'}">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('common_modules')">Common Modules</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'confluence_plugins'}" class="active">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('confluence_plugins')">Confluence Plugins</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'jira_plugins'}">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('jira_plugins')">JIRA Plugins</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'no_category'}">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('no_category')">No Category</a>
+        <div class="border-bottom"></div>
+      </li>
+      <li [ngClass]="{'active': selectedCategory == 'all_projects'}" class="active">
+        <div class="border-top"></div>
+        <a href="#" (click)="selectCategory('all_projects')">All Projects</a>
+        <div class="border-bottom"></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dashboard-right-section">
+    <div [ngSwitch]="selectedCategory">
+      <app-dashboard-blank-section [section]="'Recent Projects'" *ngSwitchCase="'recent_projects'"></app-dashboard-blank-section>
+      <app-dashboard-blank-section [section]="'Atlassian Products'" *ngSwitchCase="'atlassain_products'"></app-dashboard-blank-section>
+      <app-dashboard-blank-section [section]="'Common Modules'" *ngSwitchCase="'common_modules'"></app-dashboard-blank-section>
+      <app-dashboard-blank-section [section]="'Confluence Plugins'" *ngSwitchCase="'confluence_plugins'"></app-dashboard-blank-section>
+      <app-dashboard-blank-section [section]="'JIRA Plugins'" *ngSwitchCase="'jira_plugins'"></app-dashboard-blank-section>
+      <app-dashboard-blank-section [section]="'No Category'" *ngSwitchCase="'no_category'"></app-dashboard-blank-section>      
+      <app-dashboard-all-projects-section [projects]="userProjects" *ngSwitchCase="'all_projects'"></app-dashboard-all-projects-section>      
+    </div>
+  </div>
+</div>

@@ -11,8 +11,7 @@ export class ProjectService {
 
     constructor(private http: HttpClient) { }
 
-    getProjects(): Observable<Project[]> {
-        // return this.http.get<Project[]>('http://localhost:8080/projects/');
+    getProjects(): Observable<Project[]> {        
         return this.http.get<Project[]>(Constants.API_URL_PROJECTS);
     }
 

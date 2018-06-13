@@ -28,6 +28,9 @@ public class Project {
 
 	@Column(name = "project_name")
 	private String projectName;
+	
+	@Column(name = "project_key")
+	private String projectKey;
 
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private Set<Issue> project_issues = new HashSet<>();
@@ -36,7 +39,7 @@ public class Project {
 	@JoinTable(name = "project_user", 
 		joinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") }, 
 		inverseJoinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") })
-	@JsonIgnore
+//	@JsonIgnore
 	private Set<User> users = new HashSet<>();
 
 	public Project() {
@@ -60,6 +63,14 @@ public class Project {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public String getProjectKey() {
+		return projectKey;
+	}
+
+	public void setProjectKey(String projectKey) {
+		this.projectKey = projectKey;
 	}
 
 }

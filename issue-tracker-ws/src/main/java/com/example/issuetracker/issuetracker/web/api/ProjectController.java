@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.issuetracker.issuetracker.model.Project;
 import com.example.issuetracker.issuetracker.service.ProjectService;
+import com.example.issuetracker.issuetracker.viewmodel.ProjectViewModel;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -38,13 +39,14 @@ public class ProjectController {
 
 	@Secured({"ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER"})
 	@GetMapping(value = "/projects/{userId}")
-	public ResponseEntity<List<Project>> getProjectsByUserId(@PathVariable("userId") Long userId) {
+	public ResponseEntity<List<ProjectViewModel>> getProjectsByUserId(@PathVariable("userId") Long userId) {
 
-		List<Project> projects = projectService.findProjectsByUserId(userId);
+		List<ProjectViewModel> projects = projectService.findProjectsByUserId(userId);		
+		
 		if (projects.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-		return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
+		return new ResponseEntity<List<ProjectViewModel>>(projects, HttpStatus.OK);
 	}
 
 }

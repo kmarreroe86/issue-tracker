@@ -1,3 +1,98 @@
+:root {
+    background: #f1f1f1;
+}
+
 li {
     color: #000;
+}
+
+.dashboard-container {
+    display: flex;
+    padding: 20px 20px 20px 35px;    
+}
+.dashboard-title,
+.dashboard-left-section,
+.dashboard-container {
+    background: #F0F1F1;
+}
+.dashboard-title {
+    color: #000;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-left-section {    
+    height: 100%;
+    display: flex;
+    flex: 0 1 15vw;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    z-index: 2;
+}
+
+.dashboard-left-section ul {
+    width: 100%;
+}
+.dashboard-left-section ul li {
+    position: relative;
+    height: 50px;
+    border-left: 1px solid #c1c1c1;
+    padding: 13px 0 13px 10px;
+    transition: all 0.3s ease-in-out;
+}
+.dashboard-left-section ul li a {
+    color: #585858;
+    text-decoration: none;
+    font-weight: bold;
+    padding-right: 20px;
+}
+.dashboard-left-section ul li .border-top {
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: #c1c1c1;
+}
+.dashboard-left-section ul li .border-bottom {
+    transition: all 0.3s ease-in-out;
+}
+.dashboard-left-section ul li:last-child .border-bottom {
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 4px;
+    bottom: 0;
+    background: #c1c1c1;
+}
+.dashboard-left-section ul li.active {
+    margin-left: -15px;
+    margin-right: -5px;
+    background: #fff;
+}
+.dashboard-left-section ul li.active .border-top,
+.dashboard-left-section ul li.active .border-bottom {
+    right: 4px;
+    margin-left: 0;
+    transition: all 0.3s ease-in-out;
+}
+.dashboard-left-section ul li.active + li .border-top {
+    margin-left: -15px;
+    transition: all 0.3s ease-in-out;
+}
+.dashboard-left-section ul li.active a {
+    color:#000;
+}
+
+.dashboard-right-section {
+    display: flex;
+    flex: 0 1 85vw;
+    min-height: 400px;
+    background: #fff;
+    border: 1px solid #c1c1c1;    
+    border-radius: 8px;
+    margin-top: -20px;
+    padding-left: 20px;
 }

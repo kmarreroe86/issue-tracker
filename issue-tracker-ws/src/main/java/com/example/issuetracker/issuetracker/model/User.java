@@ -46,7 +46,7 @@ public class User {
 	                CascadeType.PERSIST,
 	                CascadeType.MERGE
 	            })
-//	@JsonIgnore
+	@JsonIgnore
 	private Set<Project>projects = new HashSet<>();
 
 	public User() {	}

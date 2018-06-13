@@ -25,13 +25,17 @@ import { ProjectService } from './services/projects.service';
 import { UserService } from './services/user.service';
 import { AppService } from './services/app.service';
 import { SessionStorage } from './core/session.storage';
+import { DashboardAllProjectsSectionComponent } from './components/dashboard-all-projects-section/dashboard-all-projects-section.component';
+import { DashboardBlankSectionComponent } from './components/dashboard-blank-section/dashboard-blank-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProjectsDashboardComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardAllProjectsSectionComponent,
+    DashboardBlankSectionComponent
   ],
   imports: [
     BrowserModule,
