@@ -23,8 +23,12 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectRepository repository;
 
 	@Override
-	public Project findById(Long id) {		
-		return repository.getOne(id);
+	public ProjectViewModel findById(Long id) {
+		Project project = repository.getOne(id);
+		// TODO: Get the user for this project
+		if(project != null )
+			return new ProjectViewModel(project.getId(), project.getProjectName(), project.getProjectKey(), null, project.getUrl());
+		return null;
 	}
 
 	@Override
@@ -69,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService {
 				u = new UserViewModel(projectLead.get().getId(), projectLead.get().getUsername(), projectLead.get().getRol().toString());
 			}
 			
-			ProjectViewModel proViewModel = new ProjectViewModel(project.getId(), project.getProjectName(), project.getProjectKey(), u);			
+			ProjectViewModel proViewModel = new ProjectViewModel(project.getId(), project.getProjectName(), project.getProjectKey(), u, project.getUrl());			
 			projectListsViewModel.add(proViewModel);			
 		}
 		return projectListsViewModel;

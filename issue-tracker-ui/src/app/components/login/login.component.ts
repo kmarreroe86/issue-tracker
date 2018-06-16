@@ -2,12 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@an
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Project } from '../../models/project'; // Remove this only for connectivity test
-import { ProjectService } from '../../services/projects.service'; // Remove this only for connectivity test
 import { AuthService } from '../../services/auth.service';
- import { AppService } from '../../services/app.service';
-import { User } from '../../models/user';
-import { LoginUser } from '../../models/loginUser';
 import { SessionStorage } from '../../core/session.storage';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,19 +16,18 @@ export class LoginComponent implements OnInit {
   projects: Project[];
   @ViewChild('usernameInput') private _usernameInput: ElementRef;
   @ViewChild('passwordInput') private _passwordInput: ElementRef;
-  public loginUser = {username: '', password: ''};
+  public loginUser = { username: '', password: '' };
   errorMessage: string;
 
   constructor(
-    private _authService: AuthService,
-    private _appService: AppService,
-    private _projectService: ProjectService,
+    private _authService: AuthService,    
+    private _userService: UserService,
     private _ssessionStorage: SessionStorage,
     private _router: Router) {
-      console.log('LoginComponent constructor');
+    console.log('LoginComponent constructor');
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     console.log('LoginComponent ngOnInit');
   }
 
@@ -46,13 +42,17 @@ export class LoginComponent implements OnInit {
     // this._appService.obtainAccessToken(this.loginUser);
 
     this._authService.attemptAuth(this.loginUser.username, this.loginUser.password).subscribe(
-      data => {        
+      data => {
         console.log('login token:', data.token);
         this._ssessionStorage.saveToken(data.token);
         this._ssessionStorage.saveCurrentUser(this.loginUser.username);
-        
-        this._router.navigate(['projects/user/', 1]);
-        // this._router.navigate(['/projects/']);
+
+        this._userService.getUserData().subscribe((user) => {
+          this._router.navigate(['projects/user/', user.id]);
+        }, error => {
+            console.log('onGetting user data error: ', error);
+          }, 
+        );
       }, error => {
         console.log('onSubscribe error: ', error);
       },

@@ -8,13 +8,16 @@ public class ProjectViewModel {
 	private String projectKey;
 
 	private UserViewModel projectLead;
+	
+	private String url;
 
-	public ProjectViewModel(Long id, String projectName, String projectKey, UserViewModel projectLead) {
+	public ProjectViewModel(Long id, String projectName, String projectKey, UserViewModel projectLead, String url) {
 		super();
 		this.id = id;
 		this.projectName = projectName;
 		this.projectKey = projectKey;
 		this.projectLead = projectLead;
+		this.url = url;
 	}
 
 	public String getProjectName() {
@@ -43,6 +46,14 @@ public class ProjectViewModel {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

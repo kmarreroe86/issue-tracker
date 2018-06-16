@@ -25,6 +25,14 @@ public class CustomUserDetails extends User implements UserDetails {
 		list.add(new SimpleGrantedAuthority("ROLE_" + getRol()));
 		return list;
 	}
+	
+	public Long getId() {
+		return super.getId();
+	}
+	
+	public String getStringRole() {
+		return super.getRol().toString();
+	}
 
 	@Override
 	public String getPassword() {

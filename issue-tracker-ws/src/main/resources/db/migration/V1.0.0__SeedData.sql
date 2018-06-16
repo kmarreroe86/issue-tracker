@@ -16,15 +16,15 @@ create table issues
 
 /*MySQL allow insert autoincrements values without needs to set off*/
 
-insert into projects(id, project_name, project_key) values
-(1, 'Spring-Demo', 'SPR'),
-(2, 'Spring-Data', 'SPD'),
-(3, 'Spring-Boot', 'SPB'),
-(4, 'Spring-Cloud', 'SPC'),
-(5, 'Spring-Security', 'SPS'),
-(6, 'Spring-Android', 'SPA'),
-(7, 'Spring-LDAP', 'SPLDA'),
-(8, 'Spring-KAFKA', 'SPKAF');
+insert into projects(id, project_name, project_key, url) values
+(1, 'Spring-Demo', 'SPR', 'http://acme.jira.com'),
+(2, 'Spring-Data', 'SPD', 'http://acme.jira.com'),
+(3, 'Spring-Boot', 'SPB', 'http://acme.jira.com'),
+(4, 'Spring-Cloud', 'SPC', 'http://acme.jira.com'),
+(5, 'Spring-Security', 'SPS', 'http://acme.jira.com'),
+(6, 'Spring-Android', 'SPA', 'http://acme.jira.com'),
+(7, 'Spring-LDAP', 'SPLDA', 'http://acme.jira.com'),
+(8, 'Spring-KAFKA', 'SPKAF', 'http://acme.jira.com');
 
 insert into users(id, username, rol, email, password) values
 (1, 'karel', 'DEVELOPER', 'karel@gmail.com', '$2a$10$VahSNsWalmFKtfHBgN8oduT1v340etl1OazlzL59XYmiAc29vkHlm'),

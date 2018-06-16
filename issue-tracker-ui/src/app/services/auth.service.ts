@@ -9,9 +9,7 @@ import { LoginUser } from '../models/loginUser';
 import { SessionStorage } from '../core/session.storage';
 
 @Injectable()
-export class AuthService {
-    private saltRounds = 10;
-    private salt = '$2a$10$VahSNsWalmFKtfHBgN8odu';
+export class AuthService {    
     constructor(private _http: HttpClient, private _tokenStorage: SessionStorage) { }
 
     attemptAuth(ussername: string, password: string): Observable<any> {

@@ -4,13 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 import { Project } from '../models/project';
+import { User } from '../models/user';
+import { Constants } from '../core/constans';
 
 @Injectable()
 export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    getUserProjects(userId: number): Observable<Project[]> {
-        return this.http.get<Project[]>('http://localhost:8080/projects/' + userId);
+    getUserData(): Observable<User> {        
+        return this.http.get<User>(Constants.API_URL_USER);
     }
 }

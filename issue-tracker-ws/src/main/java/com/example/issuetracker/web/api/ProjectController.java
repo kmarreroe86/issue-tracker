@@ -48,5 +48,14 @@ public class ProjectController {
 
 		return new ResponseEntity<List<ProjectViewModel>>(projects, HttpStatus.OK);
 	}
+	
+	@Secured({"ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER"})
+	@GetMapping(value = "/project/{id}")
+	public ResponseEntity<ProjectViewModel> getProjectById(@PathVariable("id")Long projectId){
+		ProjectViewModel project = projectService.findById(projectId);
+		
+		if(project == null) return new ResponseEntity<ProjectViewModel>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<ProjectViewModel>(project, HttpStatus.OK);
+	}
 
 }

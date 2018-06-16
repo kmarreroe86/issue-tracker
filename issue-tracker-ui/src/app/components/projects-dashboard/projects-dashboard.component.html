@@ -46,7 +46,7 @@
   </div>
 
   <div class="dashboard-right-section">
-    <div [ngSwitch]="selectedCategory">
+    <div style="width: 100%;" [ngSwitch]="selectedCategory">
       <app-dashboard-blank-section [section]="'Recent Projects'" *ngSwitchCase="'recent_projects'"></app-dashboard-blank-section>
       <app-dashboard-blank-section [section]="'Atlassian Products'" *ngSwitchCase="'atlassain_products'"></app-dashboard-blank-section>
       <app-dashboard-blank-section [section]="'Common Modules'" *ngSwitchCase="'common_modules'"></app-dashboard-blank-section>

@@ -1,4 +1,31 @@
 h1 {
     margin-top: 30px;
     margin-left: 15px;
+    font-weight: normal;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+.table th {
+    color: #a2a2a2;
+    font-weight: normal;
+    text-align: left;    
+    padding-bottom: 7px;
+}
+.table tbody tr {
+    border-bottom: 1px solid #c1c1c1;
+}
+.table tbody tr td {
+    padding: 10px 0;
+}
+.table a {
+    text-decoration: none;
+    color: #668FBD;
+    font-weight: 600;
 }

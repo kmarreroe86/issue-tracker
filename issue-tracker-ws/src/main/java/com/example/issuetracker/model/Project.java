@@ -31,6 +31,8 @@ public class Project {
 	
 	@Column(name = "project_key")
 	private String projectKey;
+	
+	private String url;
 
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private Set<Issue> project_issues = new HashSet<>();
@@ -71,6 +73,14 @@ public class Project {
 
 	public void setProjectKey(String projectKey) {
 		this.projectKey = projectKey;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

@@ -5,5 +5,6 @@ export class Project {
     projectName: string;
     projectKey: string;
     projectLead: User;
+    url: string;
     // users: Array<User>; // Comment as JsonIgnore from Java
 }

@@ -18,4 +18,8 @@ export class ProjectService {
     getUserProjects(userId: number): Observable<Project[]> {
         return this.http.get<Project[]>(Constants.API_URL_PROJECTS + userId);
     }
+
+    getProjectById(projectId: number): Observable<Project> {
+        return this.http.get<Project>(Constants.API_URL_PROJECT + projectId);
+    }
 }
