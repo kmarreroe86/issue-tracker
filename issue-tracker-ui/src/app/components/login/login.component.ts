@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   //   console.log('login called');
   //   const id = 1;
   //   const user = 'karel';
-  //   const pass = 'admin';
+  //   const pass = 'qwerty';
   //   if (user === this._usernameInput.nativeElement.value && pass === this._passwordInput.nativeElement.value) {
   //     this._router.navigate(['/projects/user', id]);
   //   }
