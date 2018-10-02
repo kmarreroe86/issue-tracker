@@ -5,7 +5,8 @@
     <div id="header-desktop">
         <div class="branding">
             <img src="../assets/jira-logo.png" alt="Jira Logo">
-            <p-dropdown [style]="{'width':'120px', 'height':'28px'}" [options]="boards" [(ngModel)]="selectedBoard" placeholder="Dashboards" optionLabel="name"></p-dropdown>
+            <p-dropdown [style]="{'width':'120px', 'height':'28px'}" [options]="boards" [(ngModel)]="selectedBoard"
+                placeholder="Dashboards" optionLabel="name"></p-dropdown>
         </div>
         <div class="links" *ngIf="_authService.getLoggedUser()">
             <a href="#">{{_authService.getLoggedUser()}}</a> |
@@ -14,8 +15,10 @@
     </div>
 </header>
 
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+<main>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</main>
 
 <footer>Bug and project tracking for software development powered by Ksoft (v1.0)</footer>

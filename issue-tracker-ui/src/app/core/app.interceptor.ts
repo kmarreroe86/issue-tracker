@@ -1,12 +1,14 @@
+
+import {tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
     HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent,
     HttpResponse, HttpUserEvent, HttpErrorResponse, HttpEvent
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { SessionStorage } from './session.storage';
-import 'rxjs/add/operator/do';
+
 
 const TOKEN_HEADER_KEY = 'Authorization';
 
@@ -21,7 +23,7 @@ export class Interceptor implements HttpInterceptor {
         if (this.token.getToken() != null) {
             authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken()) });
         }
-        return next.handle(authReq).do(
+        return next.handle(authReq).pipe(tap(
             (event: HttpEvent<any>) => {
                 console.log('Interceptor do. Response Ok');
             },
@@ -33,7 +35,7 @@ export class Interceptor implements HttpInterceptor {
                         this.router.navigate(['/login']);
                     }
                 }
-            });
+            }));
     }
 
 }

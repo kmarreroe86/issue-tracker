@@ -50,4 +50,19 @@ public class IssueController {
 		}
 		return new ResponseEntity<Issue>(createdIssue, HttpStatus.OK);
 	}
+	
+	@GetMapping("/issues/{projectId}")
+	public ResponseEntity<List<Issue>> getProjectIssues() {
+		List<Issue> issues = null;
+		
+		try {
+			issues = issueService.findAll();
+			if(issues == null) issues = new ArrayList<>();
+		} catch (Exception e) {
+			logger.error("An error ocurred\n");
+			logger.error(e.getMessage());
+			return new ResponseEntity<List<Issue>>(issues, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<List<Issue>>(issues, HttpStatus.OK);
+	}
 }

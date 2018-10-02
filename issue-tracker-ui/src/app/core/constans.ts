@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 
 export class Constants {
 
@@ -9,6 +8,7 @@ export class Constants {
     // Api calls
     public static readonly API_URL_PROJECTS: string = 'http://localhost:8080/projects/';
     public static readonly API_URL_PROJECT: string = 'http://localhost:8080/project/';
+    public static readonly API_URL_PROJECT_ISSUES: string = 'http://localhost:8080/issues/';
     
     
     public static readonly API_URL_USER: string = 'http://localhost:8080/userdata/';

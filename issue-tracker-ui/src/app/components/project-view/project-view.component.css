@@ -1,3 +1,36 @@
-h1, p {
-    color: #000;
+h1,
+p {
+  color: #000;
+}
+
+.issues-tray {
+  display: grid;
+  grid-gap: 5px;
+  /* grid-template-areas: 'status status status status'; */                        
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 100%;
+}
+
+
+/* .todo, .in-progress, .qa-review, .done {
+    grid-area: status;    
+} */
+.issue-col {
+    background-color: #f5f5f5;
+    /* border: 2px solid #fff; */
+}
+.todo {
+    /* border-color: green; */
+}
+
+.in-progress{
+    /* border-color: red; */
+}
+
+.qa-review{
+    /* border-color: gray; */
+}
+
+.done{
+    /* border-color: blue; */
 }

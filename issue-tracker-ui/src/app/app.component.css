@@ -5,6 +5,10 @@
     display: none;
 }
 
+main {
+    min-height: calc(100vh -40px);
+}
+
 /* Override dropdown styles begin */
 
 .ui-dropdown, 
