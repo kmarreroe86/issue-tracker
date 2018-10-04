@@ -6,9 +6,7 @@ import com.example.issuetracker.model.Project;
 import com.example.issuetracker.model.User;
 import com.example.issuetracker.viewmodel.ProjectViewModel;
 
-public interface ProjectService {
-
-	Project findEntityProjectById(Long id);
+public interface ProjectService {	
 	
 	ProjectViewModel findById(Long id);
 

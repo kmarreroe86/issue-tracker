@@ -67,6 +67,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	public List<ProjectViewModel> findProjectsByUserId(Long userId) {
+		
 		List<Project> projects = repository.findByUsers_Id(userId);
 		List<ProjectViewModel> projectListsViewModel = new ArrayList<>();
 		UserViewModel u = null;
@@ -84,18 +85,12 @@ public class ProjectServiceImpl implements ProjectService {
 			projectListsViewModel.add(proViewModel);
 		}
 		return projectListsViewModel;
-	}
-
-	// TODO: Remove this issue. Not been used. Refactor interface
-	@Override
-	public Project findEntityProjectById(Long id) {
-		return repository.getOne(id);
-	}
+	}	
 	
 	private ProjectViewModel projectViewModelBuilder(Project projectEntity) {		
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Long assignedUserId = ((CustomUserDetails) auth.getPrincipal()).getId();
+		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Long assignedUserId = ((CustomUserDetails) auth.getPrincipal()).getId();*/
 		
 		
 		ProjectViewModel model = new ProjectViewModel(projectEntity.getId(), projectEntity.getProjectName(),
@@ -112,7 +107,7 @@ public class ProjectServiceImpl implements ProjectService {
 					i.getType().toString(),
 					i.getCreatedDate(),
 					projectEntity.getId(),
-					assignedUserId)).collect(Collectors.toSet());
+					i.getAssignedUserId())).collect(Collectors.toSet());
 		
 		model.setIssues(issues);		
 		

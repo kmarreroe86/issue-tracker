@@ -1,0 +1,38 @@
+.issue {
+    display: grid;
+    grid-template-columns: auto 28px;
+    grid-template-rows: 65px;
+    border-bottom: 1px solid #cccbca;
+    box-shadow: 3px 0 2px rgba(0,0,0,0.2);
+    background: #fff;
+    position: relative;
+    padding: 10px;
+    border-left: 5px solid #0f0;
+}
+
+.issue-preview-box-left a {
+    text-decoration: none;
+}
+
+.issue-description {
+    font-size: 14px;
+}
+
+.issue-preview-box-right img {
+    height: 16px;
+    width: 16px;    
+}
+
+.issue .story-points {
+    position: absolute;
+    right: 22px;
+    bottom: 10px;
+    line-height: 1;
+    background-color: #CCCBCA;
+    color: #000;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    font-size: 12px;    
+}

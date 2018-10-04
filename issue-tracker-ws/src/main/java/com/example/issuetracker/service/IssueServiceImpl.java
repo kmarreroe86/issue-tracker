@@ -74,7 +74,7 @@ public class IssueServiceImpl implements IssueService {
 		entity.setStoryPoints(model.getStoryPoints());
 		entity.setType(IssueType.valueOf(model.getIssueType()));
 		entity.setProject(projectRepository.getOne(model.getProjectId()));
-		entity.setUser(userRepository.getOne(model.getAssignedUserId()));
+		entity.setAssignedUserId(model.getAssignedUserId());
 
 		return entity;
 	}
@@ -84,7 +84,7 @@ public class IssueServiceImpl implements IssueService {
 		return new IssueViewModel(entity.getId(), entity.getTitle(), entity.getDescription(),
 				entity.getPriority().toString(), entity.getStatus().toString(), entity.getStoryPoints(),
 				entity.getType().toString(), entity.getCreatedDate(), entity.getProject().getId(),
-				entity.getUser().getId());
+				entity.getId());
 	}
 
 }

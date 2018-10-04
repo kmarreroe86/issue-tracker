@@ -52,10 +52,11 @@ public class Issue {
 	@JsonIgnore
 	private Project project;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", nullable = true)
-	@JsonIgnore
-	private User user;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "user_id", nullable = true)
+//	@JsonIgnore
+//	private User user;
+	private Long assignedUserId;
 
 	public Issue() {
 
@@ -137,16 +138,16 @@ public class Issue {
 		this.project = project;
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
+	public void setAssignedUserId(Long user) {
+		this.assignedUserId = user;
 	}
 
 	public Project getProject() {
 		return project;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getAssignedUserId() {
+		return assignedUserId;
 	}
 
 }

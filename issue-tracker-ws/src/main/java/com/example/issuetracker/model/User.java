@@ -37,8 +37,8 @@ public class User {
 	
 	private String email;
 
-	@OneToMany(mappedBy = "user")
-	private Set<Issue> issueList = new HashSet<>();
+	/*@OneToMany(mappedBy = "user")
+	private Set<Issue> issueList = new HashSet<>();*/
 
 	@ManyToMany(mappedBy = "users", // -> mappedBy takes value of the list in the owner side.
 			fetch = FetchType.LAZY,

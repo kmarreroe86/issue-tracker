@@ -14,7 +14,7 @@ import { Constants } from "../../core/constans";
   encapsulation: ViewEncapsulation.None // Remove angular boilerplate html code.
 })
 export class ProjectViewComponent implements OnInit {
-  /* tempList: Issue[]; */
+  
   todoList: Array<Issue> = new Array<Issue>();
   inProgressList: Array<Issue> = new Array<Issue>();
   qaReviewList: Array<Issue> = new Array<Issue>();
@@ -34,7 +34,6 @@ export class ProjectViewComponent implements OnInit {
       this.projectService.getProjectById(this.projectId).subscribe(p => {
         this.project = p;
         this.initIssuesColumns();
-        console.log("Project:", this.project);
       });
     });
   }
@@ -55,42 +54,43 @@ export class ProjectViewComponent implements OnInit {
         this.doneList.push(i);
           break;
       }
-    });
-    
-  }
-
-
-  onTodoDrop(e: DropEvent) {
-    /* let targetIssue: Issue = e.dragData; */
-    const targetIssue: Issue = Object.assign({}, e.dragData);
-    console.log('targetIssue.issueStatus:', targetIssue.issueStatus);
-    
-    /* const oldIssue = Object.assign({}, e.dragData); */
-    targetIssue.issueStatus = Constants.ISSUE_STATUS_TODO;    
-    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
-      console.log('changed issue state');
-      this.removeItem(e.dragData);
-      this.todoList.push(issue);
-      console.log(e);
     });    
   }
 
+  onTodoDrop(e: DropEvent) {    
+    const targetIssue: Issue = Object.assign({}, e.dragData);    
+    targetIssue.issueStatus = Constants.ISSUE_STATUS_TODO;    
+    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
+      this.removeItem(e.dragData);
+      this.todoList.push(issue);
+    });
+  }
+
   onInProgressDrop(e: DropEvent) {
-    this.inProgressList.push(e.dragData);
-    this.removeItem(e.dragData);
-    console.log(e);
+    const targetIssue: Issue = Object.assign({}, e.dragData);    
+    targetIssue.issueStatus = Constants.ISSUE_STATUS_INPROGRESS;    
+    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
+      this.removeItem(e.dragData);
+      this.inProgressList.push(issue);
+    });
   }
 
   onQADrop(e: DropEvent) {
-    this.qaReviewList.push(e.dragData);
-    this.removeItem(e.dragData);
-    console.log(e);
+    const targetIssue: Issue = Object.assign({}, e.dragData);    
+    targetIssue.issueStatus = Constants.ISSUE_STATUS_QA;    
+    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
+      this.removeItem(e.dragData);
+      this.qaReviewList.push(issue);
+    });
   }
 
   onDoneDrop(e: DropEvent) {
-    this.doneList.push(e.dragData);
-    this.removeItem(e.dragData);
-    console.log(e);
+    const targetIssue: Issue = Object.assign({}, e.dragData);    
+    targetIssue.issueStatus = Constants.ISSUE_STATUS_DONE;    
+    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
+      this.removeItem(e.dragData);
+      this.doneList.push(issue);
+    });
   }
 
   removeItem(item: any) {

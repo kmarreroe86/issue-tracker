@@ -17,7 +17,7 @@ import { ProjectsDashboardComponent } from './components/projects-dashboard/proj
 import { ProjectViewComponent } from './components/project-view/project-view.component';
 import { DashboardAllProjectsSectionComponent } from './components/dashboard-all-projects-section/dashboard-all-projects-section.component';
 import { DashboardBlankSectionComponent } from './components/dashboard-blank-section/dashboard-blank-section.component';
-import { IssueComponent } from './issues/issue.component';
+import { IssueComponent } from './components/issues/issue.component';
 
 // Services
 import { UrlPermission } from './services/url.permission';

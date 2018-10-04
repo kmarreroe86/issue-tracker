@@ -1,0 +1,14 @@
+<div class="issue" draggable [dragData]="issue" 
+  [ngStyle]="{'borderLeftColor': issue.issueType == 'BUG' ? 'red' : 'green' }">
+  
+  <div class="issue-preview-box-left">
+      <a href="#">{{issue.title}}</a>
+      <p class="issue-description">{{issue.description}}</p>    
+  </div>
+
+  <div class="issue-preview-box-right">
+      <img src="assets/images/temp_user_image.jpg" alt="">
+      <span class="story-points">{{issue.storyPoints}}</span>
+  </div>
+  
+</div>

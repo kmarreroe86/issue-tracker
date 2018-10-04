@@ -35,8 +35,17 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
+	}	
+	
+	@Secured({"ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER"})
+	@GetMapping(value = "/project/{id}")
+	public ResponseEntity<ProjectViewModel> getProjectById(@PathVariable("id")Long projectId){
+		ProjectViewModel project = projectService.findById(projectId);
+		
+		if(project == null) return new ResponseEntity<ProjectViewModel>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<ProjectViewModel>(project, HttpStatus.OK);
 	}
-
+	
 	@Secured({"ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER"})
 	@GetMapping(value = "/projects/{userId}")
 	public ResponseEntity<List<ProjectViewModel>> getProjectsByUserId(@PathVariable("userId") Long userId) {
@@ -47,15 +56,6 @@ public class ProjectController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		return new ResponseEntity<List<ProjectViewModel>>(projects, HttpStatus.OK);
-	}
-	
-	@Secured({"ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER"})
-	@GetMapping(value = "/project/{id}")
-	public ResponseEntity<ProjectViewModel> getProjectById(@PathVariable("id")Long projectId){
-		ProjectViewModel project = projectService.findById(projectId);
-		
-		if(project == null) return new ResponseEntity<ProjectViewModel>(HttpStatus.NO_CONTENT);
-		return new ResponseEntity<ProjectViewModel>(project, HttpStatus.OK);
 	}
 
 }

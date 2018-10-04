@@ -1,47 +1,47 @@
-<p>Temporary page for project</p>
 
-<h1 *ngIf="project">
+<h2 *ngIf="project">
   Project: {{project.projectName}}
-</h1>
+</h2>
 <div class="filters">
   <span>Quick filters: </span> <span><a href="#">Only My Issues</a> &nbsp; <a href="#">Recently Updated</a></span>
   <hr>
 </div>
-
-<div class="issues-tray">
-  <div class="todo issue-col" droppable (onDrop)="onTodoDrop($event)">
-    <P>Todo</P>
-    <ul class="list-group">
-      <li *ngFor="let todoIssue of todoList">
-        <proj-issue [issue]="todoIssue"></proj-issue>
-      </li>
-    </ul>
-  </div>
-
-  <div class="in-progress issue-col" droppable (onDrop)="onInProgressDrop($event)">
-    <P>In Progress</P>
-    <ul class="list-group">
-      <li *ngFor="let inProgressIssue of inProgressList">
-        <proj-issue [issue]="inProgressIssue"></proj-issue>
-      </li>
-    </ul>
-  </div>
-
-  <div class="qa-review issue-col" droppable (onDrop)="onQADrop($event)">
-    <P>QA Review</P>
-    <ul class="list-group">
-      <li *ngFor="let qaIssue of qaReviewList">
-        <proj-issue [issue]="qaIssue"></proj-issue>
-      </li>
-    </ul>
-  </div>
-
-  <div class="done issue-col" droppable (onDrop)="onDoneDrop($event)">
-    <P>Done</P>
-    <ul class="list-group">
-      <li *ngFor="let doneIssue of doneList">
-        <proj-issue [issue]="doneIssue"></proj-issue>
-      </li>
-    </ul>
+<div class="issues-tray-container">
+  <div class="issues-tray">
+    <div class="todo issue-col" droppable (onDrop)="onTodoDrop($event)">
+      <P>Todo</P>
+      <ul class="list-group">
+        <li *ngFor="let todoIssue of todoList">
+          <proj-issue [issue]="todoIssue"></proj-issue>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="in-progress issue-col" droppable (onDrop)="onInProgressDrop($event)">
+      <P>In Progress</P>
+      <ul class="list-group">
+        <li *ngFor="let inProgressIssue of inProgressList">
+          <proj-issue [issue]="inProgressIssue"></proj-issue>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="qa-review issue-col" droppable (onDrop)="onQADrop($event)">
+      <P>QA Review</P>
+      <ul class="list-group">
+        <li *ngFor="let qaIssue of qaReviewList">
+          <proj-issue [issue]="qaIssue"></proj-issue>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="done issue-col" droppable (onDrop)="onDoneDrop($event)">
+      <P>Done</P>
+      <ul class="list-group">
+        <li *ngFor="let doneIssue of doneList">
+          <proj-issue [issue]="doneIssue"></proj-issue>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -1,12 +1,14 @@
 .container {
     color: #000;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #header-desktop {
     display: none;
 }
 
 main {
-    min-height: calc(100vh -40px);
+    min-height: calc(100vh - 107px);
 }
 
 /* Override dropdown styles begin */
@@ -62,8 +64,6 @@ main {
 .branding {
     float: left;
     height: 45px;
-    /* vertical-align: middle; */
-    /* padding-top: 8px; */
 }
 .branding img {
     height: 45px;
@@ -86,9 +86,9 @@ footer {
 }
 
 @media screen and (min-width: 992px) {
-    .container {
+    /* .container {
         height: calc(100vh - 107px);
-    }
+    } */
     header {
         background: #2A4160;
         padding-left: 20px;
