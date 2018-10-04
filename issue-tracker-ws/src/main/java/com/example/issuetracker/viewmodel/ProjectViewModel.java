@@ -1,5 +1,8 @@
 package com.example.issuetracker.viewmodel;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ProjectViewModel {
 	private Long id;
 
@@ -8,8 +11,10 @@ public class ProjectViewModel {
 	private String projectKey;
 
 	private UserViewModel projectLead;
-	
+
 	private String url;
+
+	private Set<IssueViewModel> issues;
 
 	public ProjectViewModel(Long id, String projectName, String projectKey, UserViewModel projectLead, String url) {
 		super();
@@ -18,6 +23,7 @@ public class ProjectViewModel {
 		this.projectKey = projectKey;
 		this.projectLead = projectLead;
 		this.url = url;
+		this.issues = new HashSet<>();
 	}
 
 	public String getProjectName() {
@@ -54,6 +60,14 @@ public class ProjectViewModel {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Set<IssueViewModel> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(Set<IssueViewModel> issues) {
+		this.issues = issues;
 	}
 
 }

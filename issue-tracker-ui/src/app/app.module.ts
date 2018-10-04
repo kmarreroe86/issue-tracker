@@ -24,6 +24,7 @@ import { UrlPermission } from './services/url.permission';
 import { routing } from './core/app.routing';
 import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/projects.service';
+import { IssueService } from './services/issue.service';
 import { UserService } from './services/user.service';
 import { AppService } from './services/app.service';
 import { SessionStorage } from './core/session.storage';
@@ -52,6 +53,7 @@ import { SessionStorage } from './core/session.storage';
     UrlPermission,
     AuthService,
     ProjectService,
+    IssueService,
     UserService,
     AppService,
     SessionStorage,

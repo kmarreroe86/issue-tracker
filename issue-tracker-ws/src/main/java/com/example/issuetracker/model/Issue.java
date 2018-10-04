@@ -59,7 +59,7 @@ public class Issue {
 
 	public Issue() {
 
-	}
+	}	
 
 	public String getTitle() {
 		return title;
@@ -104,6 +104,10 @@ public class Issue {
 	public long getId() {
 		return id;
 	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public int getStoryPoints() {
 		return storyPoints;
@@ -127,6 +131,22 @@ public class Issue {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	
+	public void setProject(Project project) {
+		this.project = project;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 }

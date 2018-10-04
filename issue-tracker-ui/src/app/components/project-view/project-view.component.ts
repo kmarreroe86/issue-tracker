@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ProjectService } from "../../services/projects.service";
+import { IssueService } from "../../services/issue.service";
 import { Project } from "../../models/project";
 import { DropEvent } from "ng-drag-drop";
+import { Issue } from "../../models/issue";
+import { Constants } from "../../core/constans";
 
 @Component({
   selector: "app-project-view",
@@ -11,40 +14,18 @@ import { DropEvent } from "ng-drag-drop";
   encapsulation: ViewEncapsulation.None // Remove angular boilerplate html code.
 })
 export class ProjectViewComponent implements OnInit {
-  todoList = [
-    {
-      name: "Issue 1",
-      description: "Issue description Lorem ipsum dolor sit amet.",
-      status: "todo"
-    }
-  ];
-  inProgressList = [
-    {
-      name: "Issue Progress",
-      description: "Issue description Lorem ipsum dolor sit amet.",
-      status: "in-progress"
-    }
-  ];
-  qaReviewList = [
-    {
-      name: "Issue QA",
-      description: "Issue description Lorem ipsum dolor sit amet.",
-      status: "qa"
-    }
-  ];
-  doneList = [
-    {
-      name: "Issue done",
-      description: "Issue description Lorem ipsum dolor sit amet.",
-      status: "done"
-    }
-  ];
-
+  /* tempList: Issue[]; */
+  todoList: Array<Issue> = new Array<Issue>();
+  inProgressList: Array<Issue> = new Array<Issue>();
+  qaReviewList: Array<Issue> = new Array<Issue>();
+  doneList: Array<Issue> = new Array<Issue>();
   private projectId: number;
   project: Project;
+
   constructor(
     private _activateRoute: ActivatedRoute,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private issueService: IssueService
   ) {}
 
   ngOnInit() {
@@ -52,15 +33,46 @@ export class ProjectViewComponent implements OnInit {
       this.projectId = parseInt(param.get("id"), 10);
       this.projectService.getProjectById(this.projectId).subscribe(p => {
         this.project = p;
+        this.initIssuesColumns();
+        console.log("Project:", this.project);
       });
     });
-    // TODO: Get all issues related with this project.
   }
 
+  initIssuesColumns() {
+    this.project.issues.forEach(i => {
+      switch (i.issueStatus) {
+        case Constants.ISSUE_STATUS_TODO:
+        this.todoList.push(i);
+          break;
+        case Constants.ISSUE_STATUS_INPROGRESS:
+        this.inProgressList.push(i);
+          break;
+        case Constants.ISSUE_STATUS_QA:
+        this.qaReviewList.push(i);
+          break;
+        case Constants.ISSUE_STATUS_DONE:
+        this.doneList.push(i);
+          break;
+      }
+    });
+    
+  }
+
+
   onTodoDrop(e: DropEvent) {
-    this.todoList.push(e.dragData);
-    this.removeItem(e.dragData);
-    console.log(e);
+    /* let targetIssue: Issue = e.dragData; */
+    const targetIssue: Issue = Object.assign({}, e.dragData);
+    console.log('targetIssue.issueStatus:', targetIssue.issueStatus);
+    
+    /* const oldIssue = Object.assign({}, e.dragData); */
+    targetIssue.issueStatus = Constants.ISSUE_STATUS_TODO;    
+    this.issueService.changeIssueStatus(targetIssue).subscribe((issue) => {
+      console.log('changed issue state');
+      this.removeItem(e.dragData);
+      this.todoList.push(issue);
+      console.log(e);
+    });    
   }
 
   onInProgressDrop(e: DropEvent) {
@@ -82,31 +94,32 @@ export class ProjectViewComponent implements OnInit {
   }
 
   removeItem(item: any) {
-    let targetList: any;
-    switch (item.status) {
-      case "todo":
+
+    let targetList: Array<Issue> = new Array<Issue>();
+    switch (item.issueStatus) {
+      case Constants.ISSUE_STATUS_TODO:
         targetList = this.todoList;
         console.log("remove from todo");
         break;
-      case "in-progress":
+      case Constants.ISSUE_STATUS_INPROGRESS:
         targetList = this.inProgressList;
         console.log("remove from in-progress");
         break;
-      case "qa":
+      case Constants.ISSUE_STATUS_QA:
         targetList = this.qaReviewList;
         console.log("remove from qa");
         break;
-      case "done":
+      case Constants.ISSUE_STATUS_DONE:
         targetList = this.doneList;
         console.log("remove from done");
         break;
     }
     let index = targetList
       .map(function(e) {
-        return e.name;
+        return e.title;
       })
-      .indexOf(item.name);
-      targetList.splice(index, 1);
+      .indexOf(item.title);
+    targetList.splice(index, 1);
   }
 
   /* removeItem(item: any, list: Array<any>) {

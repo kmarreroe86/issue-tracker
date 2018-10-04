@@ -24,9 +24,9 @@ export class ProjectService {
         return this.http.get<Project>(Constants.API_URL_PROJECT + projectId);
     }
     
-    getIssuesByProjectId(projectId: number): Observable<Issue[]> {
+    /* getIssuesByProjectId(projectId: number): Observable<Issue[]> {
         return this.http.get<Issue[]>(Constants.API_URL_PROJECT_ISSUES + projectId);
-    }
+    } */
 
 
     // TODO: Implement call to API and get all issues by project Id.

@@ -35,7 +35,7 @@ public class Project {
 	private String url;
 
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private Set<Issue> project_issues = new HashSet<>();
+	private Set<Issue> project_issues = new HashSet<>();	
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "project_user", 
@@ -81,6 +81,14 @@ public class Project {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	public Set<Issue> getProject_issues() {
+		return project_issues;
+	}
+
+	public void setProject_issues(Set<Issue> project_issues) {
+		this.project_issues = project_issues;
 	}
 
 }

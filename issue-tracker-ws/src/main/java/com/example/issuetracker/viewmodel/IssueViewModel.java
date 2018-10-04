@@ -1,5 +1,7 @@
 package com.example.issuetracker.viewmodel;
 
+import java.util.Date;
+
 public class IssueViewModel {
 
 	private Long id;
@@ -12,9 +14,30 @@ public class IssueViewModel {
 
 	private String issueStatus;
 
+	private String issueType;
+
 	private int storyPoints;
 
-	private String createdDate;
+	private Date createdDate;
+	
+	private Long projectId;
+	
+	private Long assignedUserId;
+
+	public IssueViewModel(Long id, String title, String description, String issuePriority, String issueStatus,
+			int storyPoints, String issueType, Date createdDate, Long projectId, Long assignedUser) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.issuePriority = issuePriority;
+		this.issueStatus = issueStatus;
+		this.storyPoints = storyPoints;
+		this.issueType = issueType;
+		this.createdDate = createdDate;
+		this.projectId = projectId;
+		this.assignedUserId = assignedUser;
+	}
 
 	public String getTitle() {
 		return title;
@@ -56,16 +79,40 @@ public class IssueViewModel {
 		this.storyPoints = storyPoints;
 	}
 
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getIssueType() {
+		return issueType;
+	}
+
+	public void setIssueType(String issueType) {
+		this.issueType = issueType;
+	}
+
+	public Long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
+
+	public Long getAssignedUserId() {
+		return assignedUserId;
+	}
+
+	public void setAssignedUserId(Long assignedUserId) {
+		this.assignedUserId = assignedUserId;
 	}
 
 }

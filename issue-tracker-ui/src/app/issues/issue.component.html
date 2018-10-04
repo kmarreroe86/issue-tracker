@@ -1,5 +1,6 @@
 <div class="issue" draggable [dragData]="issue">
-  <h1>{{issue.name}}</h1>
+  <h1>{{issue.title}}</h1>
   <p>{{issue.description}}</p>
-  <span>SP</span>
+  <span>SP: {{issue.storyPoints}}</span> &nbsp;&nbsp;
+  <span>Type:{{issue.issueType}}</span>
 </div>

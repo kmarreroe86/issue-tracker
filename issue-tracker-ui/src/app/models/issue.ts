@@ -8,4 +8,7 @@ export class Issue {
     issueStatus: string;
     storyPoints: number;
     createdDate: string;
+
+    projectId: number;
+    assignedUserId: number;
 }
