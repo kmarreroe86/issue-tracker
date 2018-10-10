@@ -8,7 +8,7 @@ import com.example.issuetracker.viewmodel.ProjectViewModel;
 
 public interface ProjectService {	
 	
-	ProjectViewModel findById(Long id);
+	Project findById(Long id);
 
 	Project findByName(String projectName);
 

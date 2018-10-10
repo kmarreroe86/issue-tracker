@@ -1,4 +1,4 @@
-package com.example.issuetracker.service;
+package com.example.issuetracker.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import com.example.issuetracker.model.Project;
 import com.example.issuetracker.model.User;
 import com.example.issuetracker.model.UserRol;
 import com.example.issuetracker.repository.ProjectRepository;
+import com.example.issuetracker.service.ProjectService;
 import com.example.issuetracker.viewmodel.IssueViewModel;
 import com.example.issuetracker.viewmodel.ProjectViewModel;
 import com.example.issuetracker.viewmodel.UserViewModel;
@@ -28,11 +29,12 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectRepository repository;
 
 	@Override
-	public ProjectViewModel findById(Long id) {
+	public Project findById(Long id) {
 		Project project = repository.getOne(id);
 		
 		// TODO: Get the user for this project		
-		return project == null ? null : projectViewModelBuilder(project); 
+//		return project == null ? null : projectViewModelBuilder(project);
+		return project;
 	}	
 
 	@Override
@@ -85,33 +87,6 @@ public class ProjectServiceImpl implements ProjectService {
 			projectListsViewModel.add(proViewModel);
 		}
 		return projectListsViewModel;
-	}	
-	
-	private ProjectViewModel projectViewModelBuilder(Project projectEntity) {		
-		
-		/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		Long assignedUserId = ((CustomUserDetails) auth.getPrincipal()).getId();*/
-		
-		
-		ProjectViewModel model = new ProjectViewModel(projectEntity.getId(), projectEntity.getProjectName(),
-				projectEntity.getProjectKey(), null, projectEntity.getUrl());
-		
-		Set<IssueViewModel> issues = projectEntity.getProject_issues().parallelStream().map(i -> 
-			new IssueViewModel(
-					i.getId(), 
-					i.getTitle(), 
-					i.getDescription(), 
-					i.getPriority().toString(), 
-					i.getStatus().toString(), 
-					i.getStoryPoints(), 
-					i.getType().toString(),
-					i.getCreatedDate(),
-					projectEntity.getId(),
-					i.getAssignedUserId())).collect(Collectors.toSet());
-		
-		model.setIssues(issues);		
-		
-		return model;
 	}
 
 }

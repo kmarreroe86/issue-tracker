@@ -1,4 +1,4 @@
-package com.example.issuetracker.service;
+package com.example.issuetracker.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.issuetracker.model.User;
 import com.example.issuetracker.repository.UserRepository;
+import com.example.issuetracker.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
