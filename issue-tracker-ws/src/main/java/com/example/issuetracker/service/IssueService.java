@@ -4,8 +4,4 @@ import com.example.issuetracker.model.Issue;
 
 public interface IssueService extends Operations<Issue> {
 
-//	Issue createIssue(Issue model);
-
-//	Issue updateIssue(Issue issue);
-
 }

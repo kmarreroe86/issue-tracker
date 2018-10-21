@@ -3,12 +3,11 @@ package com.example.issuetracker.service;
 import java.util.List;
 
 import com.example.issuetracker.model.Project;
-import com.example.issuetracker.model.User;
 import com.example.issuetracker.viewmodel.ProjectViewModel;
 
-public interface ProjectService {	
+public interface ProjectService extends Operations<Project> {
 	
-	Project findById(Long id);
+	/*Project findById(Long id);
 
 	Project findByName(String projectName);
 
@@ -20,6 +19,11 @@ public interface ProjectService {
 
 	void deleteById(Long id);
 	
-	void addUsersToProject(Long projectID, List<User> userList);
+	void addUsersToProject(Long projectID, List<User> userList);*/
+	
+	/* Add to the interface*/
+	List<ProjectViewModel> findProjectsByUserId(Long userId);
+//	public Project findByName(String projectName)
+//	public void addUsersToProject(Long projectID, List<User> userList)
 
 }

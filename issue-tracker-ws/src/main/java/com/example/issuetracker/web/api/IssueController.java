@@ -94,7 +94,7 @@ public class IssueController {
 		entity.setStatus(IssueStatus.valueOf(model.getIssueStatus()));
 		entity.setStoryPoints(model.getStoryPoints());
 		entity.setType(IssueType.valueOf(model.getIssueType()));
-		entity.setProject(projectService.findById(model.getProjectId()));
+		entity.setProject(projectService.findOne(model.getProjectId()));
 		entity.setAssignedUserId(model.getAssignedUserId());
 
 		return entity;

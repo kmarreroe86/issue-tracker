@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +43,7 @@ public class ProjectController {
 	@GetMapping(value = "/project/{id}")
 	public ResponseEntity<ProjectViewModel> getProjectById(@PathVariable("id")Long projectId){
 		
-		Project entity = projectService.findById(projectId);		
+		Project entity = projectService.findOne(projectId);
 		
 		if(entity == null) return new ResponseEntity<ProjectViewModel>(HttpStatus.NO_CONTENT);
 		ProjectViewModel project = projectViewModelBuilder(entity);
