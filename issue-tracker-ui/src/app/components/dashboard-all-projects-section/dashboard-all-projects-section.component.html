@@ -10,7 +10,7 @@
     </tr>
     <tr *ngFor="let p of projects">
       <td>
-        <a href="#" (click)="getProject(p.id)">{{p.projectName}}</a>
+        <a [routerLink]="" (click)="getProject(p.id)">{{p.projectName}}</a>        
       </td>
       <td>{{p.projectKey}}</td>
       <td>

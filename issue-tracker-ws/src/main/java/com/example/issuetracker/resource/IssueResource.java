@@ -1,8 +1,8 @@
-package com.example.issuetracker.viewmodel;
+package com.example.issuetracker.resource;
 
 import java.util.Date;
 
-public class IssueViewModel {
+public class IssueResource {
 
 	private Long id;
 
@@ -24,7 +24,7 @@ public class IssueViewModel {
 	
 	private Long assignedUserId;
 
-	public IssueViewModel(Long id, String title, String description, String issuePriority, String issueStatus,
+	public IssueResource(Long id, String title, String description, String issuePriority, String issueStatus,
 			int storyPoints, String issueType, Date createdDate, Long projectId, Long assignedUser) {
 		super();
 		this.id = id;

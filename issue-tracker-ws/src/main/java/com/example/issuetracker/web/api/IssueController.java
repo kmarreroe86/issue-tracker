@@ -22,9 +22,9 @@ import com.example.issuetracker.model.IssuePriority;
 import com.example.issuetracker.model.IssueStatus;
 import com.example.issuetracker.model.IssueType;
 import com.example.issuetracker.model.Project;
+import com.example.issuetracker.resource.IssueResource;
 import com.example.issuetracker.service.IssueService;
 import com.example.issuetracker.service.ProjectService;
-import com.example.issuetracker.viewmodel.IssueViewModel;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -57,7 +57,7 @@ public class IssueController {
 	}
 
 	@PostMapping(value = "/issue", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<Issue> createIssue(@RequestBody IssueViewModel model) {
+	public ResponseEntity<Issue> createIssue(@RequestBody IssueResource model) {
 		logger.info("> createIssue");
 		Issue createdIssue = null;
 		try {			
@@ -70,19 +70,19 @@ public class IssueController {
 	}
 
 	@PutMapping(value = "/modify/issue/", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<IssueViewModel> changeIssueStatus(@RequestBody IssueViewModel model) {
+	public ResponseEntity<IssueResource> changeIssueStatus(@RequestBody IssueResource model) {
 
 		try {
 			Issue entity = entityIssueBuilder(model);
-			IssueViewModel updatedIssue = issueViewModelBuilder(issueService.update(entity));
-			return new ResponseEntity<IssueViewModel>(updatedIssue, HttpStatus.OK);
+			IssueResource updatedIssue = issueViewModelBuilder(issueService.update(entity));
+			return new ResponseEntity<IssueResource>(updatedIssue, HttpStatus.OK);
 		} catch (Exception e) {
 			logger.info("Unexpected exception caught on changing issue status: " + e);
-			return new ResponseEntity<IssueViewModel>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<IssueResource>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	private Issue entityIssueBuilder(IssueViewModel model) {
+	private Issue entityIssueBuilder(IssueResource model) {
 
 		Issue entity = new Issue();
 		entity.setId(model.getId());
@@ -100,9 +100,9 @@ public class IssueController {
 		return entity;
 	}
 
-	private IssueViewModel issueViewModelBuilder(Issue entity) {
+	private IssueResource issueViewModelBuilder(Issue entity) {
 
-		return new IssueViewModel(entity.getId(), entity.getTitle(), entity.getDescription(),
+		return new IssueResource(entity.getId(), entity.getTitle(), entity.getDescription(),
 				entity.getPriority().toString(), entity.getStatus().toString(), entity.getStoryPoints(),
 				entity.getType().toString(), entity.getCreatedDate(), entity.getProject().getId(), entity.getId());
 	}

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "projects")
-public class Project implements Serializable {
+public class Project implements Serializable, Identifiable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,6 +90,11 @@ public class Project implements Serializable {
 
 	public void setProject_issues(Set<Issue> project_issues) {
 		this.project_issues = project_issues;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;		
 	}
 
 }

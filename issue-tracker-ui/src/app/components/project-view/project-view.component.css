@@ -15,9 +15,6 @@ h2 {
     margin-bottom: 15px;
 }
 
-.issues-tray-container {
-    /* min-height: calc(100% - 107px); */
-}
 .issues-tray {
   display: grid;
   grid-gap: 5px;

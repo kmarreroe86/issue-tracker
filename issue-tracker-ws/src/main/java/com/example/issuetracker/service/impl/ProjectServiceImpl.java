@@ -12,37 +12,46 @@ import com.example.issuetracker.model.Project;
 import com.example.issuetracker.model.User;
 import com.example.issuetracker.model.UserRol;
 import com.example.issuetracker.repository.ProjectRepository;
+import com.example.issuetracker.resource.ProjectResource;
+import com.example.issuetracker.resource.ProjectResourceAssembler;
+import com.example.issuetracker.resource.UserResource;
+import com.example.issuetracker.resource.UserResourceAssembler;
 import com.example.issuetracker.service.ProjectService;
-import com.example.issuetracker.viewmodel.ProjectViewModel;
-import com.example.issuetracker.viewmodel.UserViewModel;
 
 @Service
 public class ProjectServiceImpl extends AbstracService<Project> implements ProjectService {
 
 	@Autowired
-	private ProjectRepository daoRepository;	
+	private ProjectRepository daoRepository;
+	
+	/*@Autowired
+	private ProjectResourceAssembler assembler;
+	
+	@Autowired
+	private UserResourceAssembler userAssembler;*/
 	
 	
 //	TODO: Check logic of loading user projects
-	public List<ProjectViewModel> findProjectsByUserId(Long userId) {
+	public List<Project> findProjectsByUserId(Long userId) {
 		
 		List<Project> projects = daoRepository.findByUsers_Id(userId);
-		List<ProjectViewModel> projectListsViewModel = new ArrayList<>();
-		UserViewModel u = null;
+		/*List<ProjectResource> projectListsViewModel = new ArrayList<>();
+		UserResource u = null;
 
 		for (Project project : projects) {
 			Optional<User> projectLead = project.getUsers().stream().filter(pl -> pl.getRol() == UserRol.PO)
 					.findFirst();
 			if (projectLead.isPresent()) {
-				u = new UserViewModel(projectLead.get().getId(), projectLead.get().getUsername(),
-						projectLead.get().getRol().toString());
+				// TODO: Refactor this. Move transform to Resource to Controller.
+				u = new UserResource(projectLead.get());
 			}
 
-			ProjectViewModel proViewModel = new ProjectViewModel(project.getId(), project.getProjectName(),
-					project.getProjectKey(), u, project.getUrl());
+			// TODO: Refactor this. Move transform to Resource to Controller.
+			ProjectResource proViewModel = new ProjectResource(project);
 			projectListsViewModel.add(proViewModel);
 		}
-		return projectListsViewModel;
+		return projectListsViewModel;*/
+		return projects;
 	}
 	
 	protected JpaRepository<Project, Long> getDao() {
