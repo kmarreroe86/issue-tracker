@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.issuetracker.service.Operations;
 
 @Transactional
-public abstract class AbstracService<T extends Serializable> implements Operations<T> {
+public abstract class AbstracService<T extends Serializable> /*implements Operations<T>*/ {
 	
 	// read - one
 
-    @Override
+/*    @Override
     @Transactional(readOnly = true)
     public T findOne(final long id) {
         return getDao().findById(id).orElse(null);
@@ -58,4 +58,5 @@ public abstract class AbstracService<T extends Serializable> implements Operatio
     }
 
     protected abstract JpaRepository<T, Long> getDao();
-}
+*/
+	}

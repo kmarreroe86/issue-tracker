@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.example.issuetracker.config.TokenProvider;
 import com.example.issuetracker.model.AuthToken;
@@ -23,7 +25,7 @@ import com.example.issuetracker.service.UserService;
 @RestController
 @RequestMapping("/token")
 public class AuthenticationController {
-
+	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -48,7 +50,7 @@ public class AuthenticationController {
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 //		final User user = userService.findByName(loginUser.getUsername());
-		final String token = jwtTokenUtil.generateToken(authentication);
+		final String token = jwtTokenUtil.generateToken(authentication);	
 		
 		return ResponseEntity.ok(new AuthToken(token));
 	}

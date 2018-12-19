@@ -9,7 +9,7 @@ import com.example.issuetracker.repository.UserRepository;
 import com.example.issuetracker.service.UserService;
 
 @Service
-public class UserServiceImpl extends AbstracService<User> implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;
@@ -20,7 +20,7 @@ public class UserServiceImpl extends AbstracService<User> implements UserService
 	}
 
 	@Override
-	protected JpaRepository<User, Long> getDao() {
+	public JpaRepository<User, Long> getDao() {
 		return repository;
 	}
 

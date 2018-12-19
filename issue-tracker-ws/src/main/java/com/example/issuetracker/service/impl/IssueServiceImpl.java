@@ -13,7 +13,7 @@ import com.example.issuetracker.service.IssueService;
 
 @Service
 @Transactional
-public class IssueServiceImpl extends AbstracService<Issue> implements IssueService {
+public class IssueServiceImpl /*extends AbstracService<Issue>*/ implements IssueService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -27,8 +27,7 @@ public class IssueServiceImpl extends AbstracService<Issue> implements IssueServ
 	}*/
 
 	@Override
-	protected JpaRepository<Issue, Long> getDao() {
-
+	public JpaRepository<Issue, Long> getDao() {
 		return daoRepository;
 	}
 

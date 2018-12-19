@@ -20,13 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.issuetracker.model.Project;
 import com.example.issuetracker.resource.IssueResource;
 import com.example.issuetracker.resource.ProjectResource;
-import com.example.issuetracker.resource.ProjectResourceAssembler;
 import com.example.issuetracker.service.ProjectService;
-;
+import com.example.issuetracker.util.ProjectResourceAssembler;;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @ExposesResourceFor(Project.class)
-//@RequestMapping(value = "/order", produces = "application/json")
+@RequestMapping(value = "/project", produces = "application/json")
 @RestController
 public class ProjectController {
 
@@ -38,56 +37,31 @@ public class ProjectController {
 
 //    @PreAuthorize("hasRole('ADMIN')")
 	@Secured({ "ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER" })
-	@RequestMapping(value = "/projects/", method = RequestMethod.GET)
-	public ResponseEntity<List<Project>> getProjects() {
+	@RequestMapping(value = "/list/", method = RequestMethod.GET)
+	public ResponseEntity<Collection<ProjectResource>> getProjects() {
 
 		List<Project> projects = projectService.findAll();
 		if (projects.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-		return new ResponseEntity<List<Project>>(projects, HttpStatus.OK);
-	}
-
-	@Secured({ "ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER" })
-	@GetMapping(value = "/project/{id}")
-	public ResponseEntity<ProjectResource> getProjectById(@PathVariable("id") Long projectId) {
-
-		Project entity = projectService.findOne(projectId);
-
-		if (entity == null) return new ResponseEntity<ProjectResource>(HttpStatus.NO_CONTENT);
-		ProjectResource project = projectViewModelBuilder(entity);
-		return new ResponseEntity<ProjectResource>(project, HttpStatus.OK);
-	}
-
-	@Secured({ "ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER" })
-	@GetMapping(value = "/projects/{userId}")
-	public ResponseEntity<Collection<ProjectResource>> getProjectsByUserId(@PathVariable("userId") Long userId) {
-
-//		List<ProjectResource> projects = projectService.findProjectsByUserId(userId);
-//		if (projects.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-		List<Project> projects = projectService.findProjectsByUserId(userId);
-		
 		return new ResponseEntity<Collection<ProjectResource>>(assembler.toResourceCollection(projects), HttpStatus.OK);
 	}
 
-	private ProjectResource projectViewModelBuilder(Project projectEntity) {
+	@Secured({ "ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER" })
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<ProjectResource> getProjectById(@PathVariable("id") Long projectId) {
+		System.out.println("getProjectsByID: " + projectId);
+		Project entity = projectService.findOne(projectId);
+		if (entity == null) return new ResponseEntity<ProjectResource>(HttpStatus.NO_CONTENT);
 
-		/*
-		 * Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 * Long assignedUserId = ((CustomUserDetails) auth.getPrincipal()).getId();
-		 */
+		return new ResponseEntity<ProjectResource>(assembler.toResource(entity), HttpStatus.OK);
+	}
 
-		ProjectResource model = new ProjectResource(projectEntity);
-
-		Set<IssueResource> issues = projectEntity.getProject_issues().parallelStream()
-				.map(i -> new IssueResource(i.getId(), i.getTitle(), i.getDescription(), i.getPriority().toString(),
-						i.getStatus().toString(), i.getStoryPoints(), i.getType().toString(), i.getCreatedDate(),
-						projectEntity.getId(), i.getAssignedUserId()))
-				.collect(Collectors.toSet());
-
-		model.setIssues(issues);
-
-		return model;
+	@Secured({ "ROLE_DEVELOPER", "ROLE_QA", "ROLE_PO", "ROLE_DESIGNER" })
+	@GetMapping(value = "/list/{userId}")
+	public ResponseEntity<Collection<ProjectResource>> getProjectsByUserId(@PathVariable("userId") Long userId) {
+		System.out.println("getProjectsByUserID");
+		List<Project> projects = projectService.findProjectsByUserId(userId);
+		return new ResponseEntity<Collection<ProjectResource>>(assembler.toResourceCollection(projects), HttpStatus.OK);
 	}
 
 }

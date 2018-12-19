@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "issues")
-public class Issue implements Serializable {
+public class Issue implements Serializable, Identifiable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +30,17 @@ public class Issue implements Serializable {
 	private String description;
 
 	@Column(name = "issue_type")
-	@Enumerated(EnumType.STRING)
-	private IssueType issueType;
+//	@Enumerated(EnumType.STRING)
+//	private IssueType issueType;
+	private String issueType;
 
-	@Enumerated(EnumType.STRING)
-	private IssuePriority priority;
+//	@Enumerated(EnumType.STRING)
+//	private IssuePriority priority;
+	private String priority;
 
-	@Enumerated(EnumType.STRING)
-	private IssueStatus status;
+//	@Enumerated(EnumType.STRING)
+//	private IssueStatus status;
+	private String status;
 
 	@Column(name = "story_points")
 	private int storyPoints;
@@ -61,7 +64,22 @@ public class Issue implements Serializable {
 
 	public Issue() {
 
-	}	
+	}
+	
+	public Issue(final Issue issue, final Long id){
+		this.setId(id);
+		this.setAssignedUserId(issue.getAssignedUserId());
+		this.setCreatedDate(issue.getCreatedDate());
+		this.setDescription(issue.getDescription());		
+		
+		this.setModifiedDate(new Date());
+		this.setPriority(issue.getPriority());
+		this.setStatus(issue.getStatus());
+		this.setStoryPoints(issue.getStoryPoints());
+		this.setTitle(issue.getTitle());
+		this.setType(issue.getType());
+		this.setProject(issue.getProject());
+	}
 
 	public String getTitle() {
 		return title;
@@ -79,31 +97,31 @@ public class Issue implements Serializable {
 		this.description = description;
 	}
 
-	public IssueType getType() {
+	public String getType() {
 		return issueType;
 	}
 
-	public void setType(IssueType type) {
+	public void setType(String type) {
 		this.issueType = type;
 	}
 
-	public IssuePriority getPriority() {
+	public String getPriority() {
 		return priority;
 	}
 
-	public void setPriority(IssuePriority priority) {
+	public void setPriority(String priority) {
 		this.priority = priority;
 	}
 
-	public IssueStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(IssueStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	

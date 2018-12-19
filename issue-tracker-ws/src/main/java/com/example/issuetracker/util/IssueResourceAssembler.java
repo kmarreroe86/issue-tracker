@@ -1,15 +1,15 @@
-package com.example.issuetracker.resource;
+package com.example.issuetracker.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
 
-import com.example.issuetracker.model.CustomUserDetails;
-import com.example.issuetracker.model.User;
+import com.example.issuetracker.model.Issue;
+import com.example.issuetracker.resource.IssueResource;
 
 @Component
-public class UserResourceAssembler extends ResourceAssembler<CustomUserDetails, UserResource> {
+public class IssueResourceAssembler extends ResourceAssembler<Issue, IssueResource> {
 
 	@Autowired
 	protected EntityLinks entityLinks;
@@ -18,15 +18,15 @@ public class UserResourceAssembler extends ResourceAssembler<CustomUserDetails, 
 	private static final String DELETE_REL = "delete";
 
 	@Override
-	public UserResource toResource(CustomUserDetails domainObject) {
-		
-		UserResource resource = new UserResource(domainObject);
-		
+	public IssueResource toResource(Issue domainObject) {
+
+		IssueResource resource = new IssueResource(domainObject);
+
 		final Link selfLink = entityLinks.linkToSingleResource(domainObject);
 		resource.add(selfLink.withSelfRel());
 		resource.add(selfLink.withRel(UPDATE_REL));
-		resource.add(selfLink.withRel(DELETE_REL));
-		
+		resource.add(selfLink.withRel(DELETE_REL));		
+
 		return resource;
 	}
 

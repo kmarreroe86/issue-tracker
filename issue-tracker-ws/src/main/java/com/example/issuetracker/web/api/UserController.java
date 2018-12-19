@@ -20,8 +20,8 @@ import com.example.issuetracker.model.CustomUserDetails;
 import com.example.issuetracker.model.Project;
 import com.example.issuetracker.model.User;
 import com.example.issuetracker.resource.UserResource;
-import com.example.issuetracker.resource.UserResourceAssembler;
 import com.example.issuetracker.service.UserService;
+import com.example.issuetracker.util.UserResourceAssembler;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @ExposesResourceFor(CustomUserDetails.class)

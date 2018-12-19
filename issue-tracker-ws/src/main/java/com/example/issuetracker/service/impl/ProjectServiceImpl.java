@@ -1,25 +1,17 @@
 package com.example.issuetracker.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.example.issuetracker.model.Project;
-import com.example.issuetracker.model.User;
-import com.example.issuetracker.model.UserRol;
 import com.example.issuetracker.repository.ProjectRepository;
-import com.example.issuetracker.resource.ProjectResource;
-import com.example.issuetracker.resource.ProjectResourceAssembler;
-import com.example.issuetracker.resource.UserResource;
-import com.example.issuetracker.resource.UserResourceAssembler;
 import com.example.issuetracker.service.ProjectService;
 
 @Service
-public class ProjectServiceImpl extends AbstracService<Project> implements ProjectService {
+public class ProjectServiceImpl /*extends AbstracService<Project>*/ implements ProjectService {
 
 	@Autowired
 	private ProjectRepository daoRepository;
@@ -34,7 +26,7 @@ public class ProjectServiceImpl extends AbstracService<Project> implements Proje
 //	TODO: Check logic of loading user projects
 	public List<Project> findProjectsByUserId(Long userId) {
 		
-		List<Project> projects = daoRepository.findByUsers_Id(userId);
+		List<Project> projects = daoRepository.getProjectsByUserId(userId);
 		/*List<ProjectResource> projectListsViewModel = new ArrayList<>();
 		UserResource u = null;
 
@@ -54,7 +46,8 @@ public class ProjectServiceImpl extends AbstracService<Project> implements Proje
 		return projects;
 	}
 	
-	protected JpaRepository<Project, Long> getDao() {
+	@Override
+	public CrudRepository<Project, Long> getDao() {
 		return daoRepository;
 	}
 

@@ -4,22 +4,47 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface Operations<T extends Serializable> {
 
-	T findOne(final long id);
+//	T findOne(final long id);
+	@Transactional(readOnly = true)
+	default T findOne(final long id) {
+		return getDao().findById(id).orElse(null);
+	}
 
-	List<T> findAll();
+	@Transactional(readOnly = true)
+	default List<T> findAll() {
+		return (List<T>) getDao().findAll();
+	}
 
-	Page<T> findPaginated(int page, int size);
+	/**
+	 * TODO: Check pagination 
+	 * */
+	/*default Page<T> findPaginated(final int page, final int size) {
+		return getDao().findAll(new PageRequest(page, size));
+	}*/
 
 	// write
-	T create(final T entity);
+	default T create(final T entity) {
+		return getDao().save(entity);
+	}
 
-	T update(final T entity);
+	default T update(final T entity) {
+		return getDao().save(entity);
+	}
 
-	void delete(final T entity);
+	default void delete(final T entity) {
+		getDao().delete(entity);
+	}
 
-	void deleteById(final long entityId);
+	default void deleteById(final long entityId) {
+		getDao().deleteById(entityId);
+	}
+
+	CrudRepository<T, Long> getDao();
 
 }

@@ -1,93 +1,95 @@
 package com.example.issuetracker.resource;
 
 import java.util.Date;
+import java.util.Objects;
 
-public class IssueResource {
+import org.springframework.hateoas.ResourceSupport;
 
-	private Long id;
+import com.example.issuetracker.model.Issue;
+import com.example.issuetracker.model.Project;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	private String title;
+public class IssueResource extends ResourceSupport {
 
-	private String description;
+	private  Long id;
 
-	private String issuePriority;
+	private  String title;
 
-	private String issueStatus;
+	private  String description;
 
-	private String issueType;
+	private  String issuePriority;
 
-	private int storyPoints;
+	private  String issueStatus;
 
-	private Date createdDate;
+	private  String issueType;
+
+	private  int storyPoints;
+
+	private  Date createdDate;
 	
-	private Long projectId;
-	
+	private Date modifiedDate;
+
+//	private final Long projectId;
+	private final Project project;
+
 	private Long assignedUserId;
 
-	public IssueResource(Long id, String title, String description, String issuePriority, String issueStatus,
-			int storyPoints, String issueType, Date createdDate, Long projectId, Long assignedUser) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.issuePriority = issuePriority;
-		this.issueStatus = issueStatus;
-		this.storyPoints = storyPoints;
-		this.issueType = issueType;
-		this.createdDate = createdDate;
-		this.projectId = projectId;
-		this.assignedUserId = assignedUser;
+	/*
+	 * public IssueResource(Long id, String title, String description, String
+	 * issuePriority, String issueStatus, int storyPoints, String issueType, Date
+	 * createdDate, Long projectId, Long assignedUser) { super(); this.id = id;
+	 * this.title = title; this.description = description; this.issuePriority =
+	 * issuePriority; this.issueStatus = issueStatus; this.storyPoints =
+	 * storyPoints; this.issueType = issueType; this.createdDate = createdDate;
+	 * this.projectId = projectId; this.assignedUserId = assignedUser; }
+	 */
+	
+//	public IssueResource() {}
+
+	public IssueResource(Issue issue) {
+		this.id = issue.getId();
+		this.title = issue.getTitle();
+		this.description = issue.getDescription();
+		this.issuePriority = issue.getPriority().toString();
+		this.issueStatus = issue.getStatus().toString();
+		this.storyPoints = issue.getStoryPoints();
+		this.issueType = issue.getType().toString();
+		this.createdDate = issue.getCreatedDate();
+		this.modifiedDate = issue.getModifiedDate();
+		this.project = issue.getProject();
+		this.assignedUserId = issue.getAssignedUserId();
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public String getDescription() {
 		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getIssuePriority() {
 		return issuePriority;
 	}
 
-	public void setIssuePriority(String issuePriority) {
-		this.issuePriority = issuePriority;
-	}
-
 	public String getIssueStatus() {
 		return issueStatus;
-	}
-
-	public void setIssueStatus(String issueStatus) {
-		this.issueStatus = issueStatus;
 	}
 
 	public int getStoryPoints() {
 		return storyPoints;
 	}
 
-	public void setStoryPoints(int storyPoints) {
-		this.storyPoints = storyPoints;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public Long getId() {
+	@JsonProperty("id")
+	public Long getResourceId() {
 		return id;
 	}
 
@@ -95,24 +97,26 @@ public class IssueResource {
 		return issueType;
 	}
 
-	public void setIssueType(String issueType) {
-		this.issueType = issueType;
-	}
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
+	public Project getProject() {
+		return project;
 	}
 
 	public Long getAssignedUserId() {
 		return assignedUserId;
 	}
-
-	public void setAssignedUserId(Long assignedUserId) {
-		this.assignedUserId = assignedUserId;
-	}
+	
+	// Two IssueResource are equal if their IDs are equal
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IssueResource resource = (IssueResource) o;
+        return getResourceId() == resource.getResourceId();
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }
