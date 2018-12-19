@@ -18,7 +18,7 @@ export class IssueService {
 
   changeIssueStatus(issue: Issue): Observable<Issue> {
     return this.http
-      .put<Issue>(Constants.API_URL_ISSUE_MODIFY, issue/* , {
+      .post<Issue>(Constants.API_URL_ISSUE_MODIFY+issue.id, issue/* , {
         headers: new HttpHeaders({
           "Content-Type": "application/json"
         })

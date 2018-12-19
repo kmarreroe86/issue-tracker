@@ -8,5 +8,6 @@ export class Project {
     projectLead: User;
     url: string;
     issues: Array<Issue>;
+    _links: Array<string>;
     // users: Array<User>; // Comment as JsonIgnore from Java
 }

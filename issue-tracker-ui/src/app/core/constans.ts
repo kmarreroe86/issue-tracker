@@ -6,10 +6,10 @@ export class Constants {
     public static readonly CURRENT_USER: string = 'current_user';
 
     // Api calls
-    public static readonly API_URL_PROJECTS: string = 'http://localhost:8080/projects/';
+    public static readonly API_URL_PROJECTS: string = 'http://localhost:8080/project/list/';
     public static readonly API_URL_PROJECT: string = 'http://localhost:8080/project/';
-    public static readonly API_URL_PROJECT_ISSUES: string = 'http://localhost:8080/issues/'; //TODO: Remove this field.
-    public static readonly API_URL_ISSUE_MODIFY: string = 'http://localhost:8080/modify/issue/';
+    public static readonly API_URL_PROJECT_ISSUES: string = 'http://localhost:8080/issue/list/'; //TODO: Remove this field.
+    public static readonly API_URL_ISSUE_MODIFY: string = 'http://localhost:8080/issue/';
 
     
     

@@ -40,6 +40,8 @@ export class ProjectViewComponent implements OnInit {
 
   initIssuesColumns() {
     this.project.issues.forEach(i => {
+      console.log('issue', JSON.stringify(i));
+      
       switch (i.issueStatus) {
         case Constants.ISSUE_STATUS_TODO:
         this.todoList.push(i);

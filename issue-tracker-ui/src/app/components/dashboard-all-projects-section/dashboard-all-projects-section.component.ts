@@ -13,6 +13,7 @@ export class DashboardAllProjectsSectionComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
+    console.log(JSON.stringify('projects', this.projects));    
   }
 
   getProject(id) {     

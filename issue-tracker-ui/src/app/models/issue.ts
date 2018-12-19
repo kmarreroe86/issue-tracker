@@ -1,3 +1,4 @@
+import { Project } from "./project";
 
 export class Issue {
     id: number;
@@ -8,7 +9,9 @@ export class Issue {
     issueStatus: string;
     storyPoints: number;
     createdDate: string;
+    _links: Array<string>;
 
-    projectId: number;
+    /* projectId: number; */
+    project: Project;
     assignedUserId: number;
 }
